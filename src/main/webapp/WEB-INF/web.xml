@@ -1,6 +1,6 @@
 <web-app>
 
-	<display-name>DsDataDemo</display-name>
+	<display-name>Club Members Database</display-name>
 
 	<welcome-file-list>
 		<welcome-file>index.web</welcome-file>
@@ -19,6 +19,6 @@
 		<url-pattern>*.web</url-pattern>
 	</servlet-mapping>
 
-	<!-- N.B. No security in this toy demo -->
+	<!-- N.B. No security yet; coming soon! -->
 
 </web-app>

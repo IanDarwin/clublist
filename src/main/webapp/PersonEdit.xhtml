@@ -7,7 +7,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="/template/template.xhtml">
 
-<ui:define name="pageTitle">Person Edit</ui:define>
+<ui:define name="pageTitle">Member Edit</ui:define>
 <h:head>
 <f:metadata>
     <f:event type="preRenderView" rendered="#{!empty request.getParameter('personId')}" listener="#{personHome.wire(request.getParameter('personId'))}"/>
