@@ -1,0 +1,7 @@
+= club - Club Membership List
+
+Track members for a small non-profit club.
+
+This shows off some basic functionality of DeltaSpike Data in a JSF environment.
+
+

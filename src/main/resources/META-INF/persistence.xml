@@ -1,0 +1,28 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+   version="1.0">
+   
+	<persistence-unit name="ucfn" transaction-type="JTA">
+
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+		<class>model.Person</class>
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+
+		<properties>
+
+			<!-- Properties for PostgreSQL (database must be created) -->
+			<property name="javax.persistence.jtaDataSource" value="java:jboss/datasources/UCFNDatasource"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+
+			<!-- Properties for Hibernate provider -->
+			<property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+			<property name="hibernate.show_sql" value="true"/>
+			<property name="hibernate.format_sql" value="false"/>
+			<property name="hibernate.archive.autodetection" value="class"/>
+			<property name="hibernate.transaction.factory.class" value="org.hibernate.transaction.JTATransactionFactory"/>
+
+		</properties>
+	</persistence-unit>
+</persistence>

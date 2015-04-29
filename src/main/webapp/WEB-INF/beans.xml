@@ -1,0 +1,6 @@
+<beans>
+	<!-- For JTA datasource, DeltaSpike Data needs this! -->
+    <alternatives>
+        <class>org.apache.deltaspike.jpa.impl.transaction.BeanManagedUserTransactionStrategy</class>
+    </alternatives>
+</beans>

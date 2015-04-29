@@ -1,0 +1,67 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/template/template.xhtml">
+
+<ui:define name="pageTitle">Person vs Person</ui:define>
+
+<ui:define name="body">
+
+	<p:panel>
+	<f:facet name="header">Here's looking at your People - #{personList.findAll().size()} of them.</f:facet>
+
+	<!-- Print the table, or, an error -->
+	<h:outputText
+		value="Arrr, Billy! I can't find any people. Did we add any yet??"
+		rendered="#{empty personList.findAll()}"/>
+
+	<!-- Display the main part of the whole page. -->
+	<p:dataTable border='1' 
+		rendered="#{!empty personList.findAll()}"
+		var="person" value="#{personList.findAll()}" 
+		paginator="true" rows="#{pfTableConstants.rows}"
+		paginatorTemplate="#{pfTableConstants.paginatorTemplate}"
+		rowsPerPageTemplate="#{pfTableConstants.rowsPerPageTemplate}"
+		>
+		<p:column width="5%">
+			<f:facet name="header">Id</f:facet>
+			<h:outputText value="#{person.id}"/>
+		</p:column>
+		<p:column>
+			<f:facet name="header">First Name</f:facet>
+			<h:outputText value="#{person.firstName}"/>
+		</p:column>
+		<p:column>
+			<f:facet name="header">Last Name</f:facet>
+			<h:outputText value="#{person.lastName}"/>
+		</p:column>
+		<p:column>
+			<f:facet name="header">Email</f:facet>
+			<h:outputText value="#{person.email}"/>
+		</p:column>
+		<p:column style="width: 10%">
+			<f:facet name="header">Operations</f:facet>
+			<h:outputLink value="PersonView.web">
+				View
+				<f:param name="personId" value="#{person.id}"/>
+			</h:outputLink>
+			<h:outputLink value="PersonLabel.web">
+				Member Tag
+				<f:param name="personId" value="#{person.id}"/>
+			</h:outputLink>
+			<h:outputLink value="PersonEdit.web">
+				Edit
+				<f:param name="personId" value="#{person.id}"/>
+			</h:outputLink>
+		</p:column>
+	</p:dataTable>
+	<h:form>
+	<p:button outcome="PersonEdit.web" value="Add"/>
+	</h:form>
+	</p:panel>
+</ui:define>
+</ui:composition>
