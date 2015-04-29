@@ -7,12 +7,12 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="/template/template.xhtml">
 
-<ui:define name="pageTitle">Person vs Person</ui:define>
+<ui:define name="pageTitle">Membership List</ui:define>
 
 <ui:define name="body">
 
 	<p:panel>
-	<f:facet name="header">Here's looking at your People - #{personList.findAll().size()} of them.</f:facet>
+	<f:facet name="header">Here's looking at your Members  - #{personList.findAll().size()} of them.</f:facet>
 
 	<!-- Print the table, or, an error -->
 	<h:outputText

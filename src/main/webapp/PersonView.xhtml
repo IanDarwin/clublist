@@ -12,15 +12,18 @@
 
 	<ui:composition template="/template/template.xhtml">
 
-		<ui:define name="pageTitle">Person vs Person</ui:define>
+		<ui:define name="pageTitle">Member</ui:define>
 
-		<ui:define name="pageHeader">Person View - Person on a Person?</ui:define>
+		<ui:define name="pageHeader">Member View</ui:define>
 
 		<ui:define name="body">
 			<p:panelGrid columns="2" title="PersonView">
-				FirstName: #{personHome.instance.firstName}
-				LastName: #{personHome.instance.lastName}
-				Email: #{personHome.instance.email}
+				FirstName:
+				#{personHome.instance.firstName}
+				LastName:
+				#{personHome.instance.lastName}
+				Email:
+				#{personHome.instance.email}
 				
 			</p:panelGrid>
 		</ui:define>
