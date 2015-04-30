@@ -18,6 +18,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 
+import org.omg.CORBA.StringHolder;
+
 import model.Country;
 import model.Person;
 
@@ -143,30 +145,44 @@ public class PersonHome implements Serializable {
             Object userInputValue) {
 		
 		boolean valid = true;
-		String postCode = (String) userInputValue, message = "??";
+		String postCode = (String) userInputValue;
 		Country country = instance.getCountry();
 		if (country == null) {
 			country = Country.CA;
 		}
+		StringHolder messageHolder = new StringHolder();
+		valid = validatePostCode(country, postCode, messageHolder);
+		if (!valid) {
+			jsfContext.addMessage(
+					toValidate.getClientId(jsfContext), 
+					new FacesMessage(messageHolder.value));
+	        ((UIInput) toValidate).setValid(false);
+	        return;
+		}
+	}
+
+	/** 
+	 * Method is NOT API and is only public for testing
+	 * @param country The country
+	 * @param postCode The post code
+	 * @param invalidMessage A holder for a message if invalid
+	 * @return The syntactic validity of the given code
+	 */
+	public boolean validatePostCode(Country country, String postCode, StringHolder invalidMessage) {
+		boolean valid = true;
 		switch(country) {
 		case CA:
 			valid = postCode.matches("\\w\\d\\w ?\\d\\w\\d");
-			message = "PostCode must match ANA NAN pattern";
+			invalidMessage.value = "PostCode must match ANA NAN pattern";
 			break;
 		case US:
 			valid = postCode.matches("\\d{5}(-\\d{4})?");
-			message = "Zip Code must be 5 digits, optional -4 digits";
+			invalidMessage.value = "Zip Code must be 5 digits, optional -4 digits";
 		case ZZ:
 			break;
 		default:
 			throw new IllegalStateException("Unknown country");
 		}
-		if (!valid) {
-			jsfContext.addMessage(
-					toValidate.getClientId(jsfContext), 
-					new FacesMessage(message));
-	        ((UIInput) toValidate).setValid(false);
-	        return;
-		}
+		return valid;
 	}
 }
