@@ -26,8 +26,10 @@ import model.Person;
  * an Entity (and its relations) to the Client/Web tier, rather like a Seam2 "Home Object"
  * @author Ian Darwin
  */
-@Stateful@Named@ConversationScoped
+@Stateful @Named @ConversationScoped
 public class PersonHome implements Serializable {
+
+	private static final String LIST_PAGE = "PersonList";
 
 	private static final long serialVersionUID = -2284578724132631798L;
 
@@ -68,7 +70,7 @@ public class PersonHome implements Serializable {
 	public String update() {
 		System.out.println("MemberHome.update()");
 		em.merge(instance);
-		return "PersonList.web";
+		return LIST_PAGE;
 	}
 	
 	public void create() {
@@ -80,7 +82,7 @@ public class PersonHome implements Serializable {
 		System.out.println("MemberHome.save()");
 		em.persist(instance);
 		conv.end();
-		return "PersonList.web";
+		return LIST_PAGE;
 	}
 
 	public void newInstance() {
@@ -104,9 +106,20 @@ public class PersonHome implements Serializable {
 		this.instance = instance;
 	}
 	
+	/** Close an editing operation: just end conversation,
+	 * return List page.
+	 * @return The List Page
+	 */
 	public String cancel() {
 		conv.end();
-		return "PersonList";
+		return LIST_PAGE;
+	}
+	
+	/** Like Cancel but for e.g., View page, no conv end.
+	 * @return The List Page
+	 */
+	public String done() {
+		return LIST_PAGE;
 	}
 
 	public void remove() {
