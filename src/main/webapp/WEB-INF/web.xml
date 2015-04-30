@@ -1,11 +1,13 @@
-<web-app>
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
 
 	<display-name>Club Members Database</display-name>
 
 	<welcome-file-list>
-		<welcome-file>index.web</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>index.html</welcome-file>
+		<welcome-file>PersonList.web</welcome-file>
 	</welcome-file-list>
 
 	<!-- JSF Servlet -->
@@ -19,6 +21,29 @@
 		<url-pattern>*.web</url-pattern>
 	</servlet-mapping>
 
-	<!-- N.B. No security yet; coming soon! -->
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<realm-name>Club Membership Area</realm-name>
+		<form-login-config>
+			<form-login-page>/login.jsp</form-login-page>
+			<form-error-page>/loginfailure.jsp</form-error-page>
+		</form-login-config>
+	</login-config>
+
+	<security-constraint>
+		<display-name>Club Membership Area</display-name>
+		<web-resource-collection>
+			<web-resource-name>Club Membership Area</web-resource-name>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>club_exec</role-name>
+		</auth-constraint>
+		<!--
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+		-->
+	</security-constraint>
 
 </web-app>
