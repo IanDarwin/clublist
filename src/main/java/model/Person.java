@@ -2,7 +2,7 @@ package model;
 
 import java.beans.Transient;
 
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +13,7 @@ import javax.persistence.Id;
  * @author Ian Darwin
  */
 @Entity
-@Named
+@ManagedBean
 public class Person {
 	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
