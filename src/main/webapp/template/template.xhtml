@@ -8,8 +8,9 @@
    contentType="text/html">
 <html>
     <h:head>
+	<f:loadBundle basename="config" var="config" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	<title><ui:insert name="title"/></title>
+	<title><ui:insert name="title"/>#{config.orgName}</title>
 	<link rel="shortcut icon" href="#{request.contextPath}/favicon.ico"/>
 	<link rel="stylesheet" type="text/css" href="stylesheet.css" title="style" />
     </h:head>
@@ -18,7 +19,7 @@
 
     <body onload="myInit()">
 	<!-- Every-page Header -->
-	<h1>UCFN Club Membership</h1>
+	<h1>#{config.orgName} Membership</h1>
 
 	<!-- Rest of page -->
 	<div class="body">
