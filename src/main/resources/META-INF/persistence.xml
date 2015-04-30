@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml//tickns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_1.xsd"
 	version="2.1">
 
-	<persistence-unit name="cliblist" transaction-type="JTA">
+	<persistence-unit name="clublist" transaction-type="JTA">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:jboss/datasources/ClubListDataSource</jta-data-source>
 		<class>model.Person</class>
