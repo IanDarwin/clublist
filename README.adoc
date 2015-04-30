@@ -10,9 +10,16 @@ Security blankets:
 	1) role="club_exec" only
 	2) later: Member, allow members to update their own record (only!)
 
+Use redirect after editing to really go back to the List page.
+
 "Position" should be a relationship to another Entity, with a dropdown chooser.
 
 "Membership Type" should be a relationship to another Entity, with a dropdown.
 
 Search with 'Like' method in DS Data
 
+A confirmation (p:dialog?) on the Edit->Delete button would be a good idea.
+
+Implement the Mailing List page.
+
+Implement the Print Member Badge/Label page.
