@@ -4,6 +4,15 @@ Track members for a small non-profit club.
 
 This shows off some basic functionality of JPA and DeltaSpike Data in a JSF environment.
 
+== Deployment
+
+. Copy config-sample.properties to config.properties, change the name from Sample Club to your org's.
+. Setup the datasource in your app server
+. Setup the deployment as needed (e.g., edit jboss-deployment.xml)
+. Createa a user in the role of club_exec in your app server.
+. Deploy (e.g., mvn wildfly:deploy if you use JBoss WildFly).
+. Enjoy!
+
 == ToDo
 
 Security blankets:
@@ -23,3 +32,5 @@ A confirmation (p:dialog?) on the Edit->Delete button would be a good idea.
 Implement the Mailing List page.
 
 Implement the Print Member Badge/Label page.
+
+Refactor Home object to merge w/ darwinsys-ee EntityHome
