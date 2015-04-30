@@ -1,67 +1,110 @@
 package data;
 
-import javax.ejb.Stateless;
+import java.io.Serializable;
+
+import javax.annotation.PreDestroy;
+import javax.ejb.Remove;
+import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.enterprise.context.Conversation;
+import javax.enterprise.context.ConversationScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 
+import model.Country;
 import model.Person;
 
 /**
- * This is a JPA "gateway" data interface using JPA
+ * Implements Gateway, an Adam Bien pattern whose purpose is to expose
+ * an Entity (and its relations) to the Client/Web tier, rather like a Seam2 "Home Object"
  * @author Ian Darwin
  */
-@Stateless @Named("personHome")
-@SessionScoped
-public class PersonHome {
-	
-	private static final String OUTCOME = "PersonList";
+@Stateful@Named@ConversationScoped
+public class PersonHome implements Serializable {
 
-	@PersistenceContext
-	private EntityManager em;
+	private static final long serialVersionUID = -2284578724132631798L;
 
+	@Inject Conversation conv;
+
+	// Must be Long (not long) so we can check for null
+	private Long id;
 	private Person instance = new Person();
 
-	public Person getInstance() {
-		return instance;
-	}
-	
-	public void wire(Long id) {
-		if (id == null) {
-			create();
-			return;
-		}
-		instance = em.find(Person.class, id);
+	@PersistenceContext(type=PersistenceContextType.EXTENDED) EntityManager em;
+
+	public PersonHome() {
+		System.out.println("MemberHome.MemberHome()");
 	}
 
-	public void create() {
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void wire() {
+		conv.begin();
+		System.out.println("Wire(): " + id);
+		if (id == null) {
+			throw new IllegalStateException("Wire: No ID");
+		}
+		instance = em.find(Person.class, id);
+		if (instance == null) {
+			System.err.println("Person not found by id! " + id);
+		}
+	}
+	public void wire(Long id) {
+		System.out.println("MemberHome.wire(" + id + ")");
+		setId(id);
+		wire();
+	}
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public String update() {
+		System.out.println("MemberHome.update()");
+		em.merge(instance);
+		return "PersonList.web";
+	}
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public String save() {
+		System.out.println("MemberHome.save()");
+		em.persist(instance);
+		return "PersonList.web";
+	}
+
+	public void newInstance() {
+		System.out.println("MemberHome.newInstance()");
 		instance = new Person();
 	}
 
-	/** Discard previously-entered values */
-	public String cancel() {
-		create();
-		return OUTCOME;
+	public Long getId() {
+		return id;
 	}
-	/** In JPA an "update"-type method often doesn't have to
-	 * do anything except look good, e.g., it sports a
-	 * Transaction Attribute that will make the changes
-	 * get committed. Unless, of course, the instance is
-	 * brand-new
-	 */
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public String update() {
-		if (instance.getId() == 0) {
-			em.persist(instance);
-		}
-		return OUTCOME;
+	public void setId(Long id) {
+		System.out.println("MemberHome.setId(" + id + ")");
+		this.id = id;
+	}
+	public Person getInstance() {
+		System.out.println("MemberHome.getInstance(): " + instance);
+		return instance;
+	}
+	public void setInstance(Person instance) {
+		this.instance = instance;
+	}
+
+	@Remove
+	public void remove() {
+		System.out.println("MemberHome.remove()");
+		conv.end();
+	}
+
+	@PreDestroy
+	public void bfn() {
+		System.out.println("MemberHome.bfn()");
 	}
 
 	/**
@@ -74,9 +117,10 @@ public class PersonHome {
 		
 		boolean valid = true;
 		String postCode = (String) userInputValue, message = "??";
-		switch(instance.getCountry()) {
+		final Country country = instance.getCountry();
+		switch(country) {
 		case CANADA:
-			valid = postCode.matches("\\w\\d\\w \\d\\w\\d");
+			valid = postCode.matches("\\w\\d\\w ?\\d\\w\\d");
 			message = "PostCode must match ANA NAN pattern";
 			break;
 		case USA:

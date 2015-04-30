@@ -19,26 +19,26 @@
 		<h:panelGrid columns='3'>
 		
 		First Name:
-		<h:inputText id="firstnameTF" value="#{person.firstName}" required='true'/>
+		<h:inputText id="firstnameTF" value="#{personHome.instance.firstName}" required='true'/>
 		<h:message id='firstnameMessage' for='firstnameTF'/>
 		
 		Last Name:
-		<h:inputText id="lastnameTF" value="#{person.lastName}" required='true'/>
+		<h:inputText id="lastnameTF" value="#{personHome.instance.lastName}" required='true'/>
 		<h:message id='lastnameMessage' for='lastnameTF'/>
 	
 		Email:
-		<h:inputText id="emailTF" value="#{person.email}" required='true'>
+		<h:inputText id="emailTF" value="#{personHome.instance.email}" required='true'>
 			<f:validateRegex pattern="\w+@\w+\.\w+"/>
 			<f:ajax event="blur" render='emailMessage'/>
 		</h:inputText>
 		<h:message id='emailMessage' for='emailTF'/>
 
 		Address:
-		<h:inputText id="addressTF" value="#{person.address}" required='true'/>
+		<h:inputText id="addressTF" value="#{personHome.instance.address}" required='true'/>
 		<h:message id='addressMessage' for='addressTF'/>
 
 		City:
-		<h:inputText id="cityTF" value="#{person.city}" required='true'/>
+		<h:inputText id="cityTF" value="#{personHome.instance.city}" required='true'/>
 		<h:message id='cityMessage' for='cityTF'/>
 
 		Province:
@@ -46,7 +46,7 @@
 		<h:message id='provinceMessage' for='provinceTF'/>
 
 		PostCode:
-		<h:inputText id="postcodeTF" value="#{person.postCode}" 
+		<h:inputText id="postcodeTF" value="#{personHome.instance.postCode}" 
 			validator="#{personHome.validatePostCode}" required='true'/>
 		<h:message id='postcodeMessage' for='postcodeTF'/>
 
@@ -57,7 +57,9 @@
 		</h:panelGrid>
 	</p:panel>
 
-	<p:commandButton value="Save" action="#{personList.save(person)}" ajax='false'/>
+	<p:commandButton value="Save" action="#{personHome.save()}" ajax='false'/>
+	</h:form>
+	<h:form>
 	<p:commandButton value="Cancel" action="#{personHome.cancel}" ajax='false'/>
 	</h:form>
 	
