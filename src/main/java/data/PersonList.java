@@ -2,6 +2,7 @@ package data;
 
 import java.util.List;
 
+import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Default;
 import javax.inject.Named;
 
@@ -18,6 +19,7 @@ import org.apache.deltaspike.data.api.Repository;
  * @author Ian Darwin
  */
 @Named("personList") @Default
+@SessionScoped
 @Repository 
 public interface PersonList extends EntityRepository<Person, Long> {
 
