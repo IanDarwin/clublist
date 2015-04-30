@@ -1,12 +1,19 @@
 package model;
 
-import java.beans.Transient;
+import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 /**
  * Represents one person in our database.
@@ -16,14 +23,17 @@ import javax.persistence.Id;
 @ManagedBean
 public class Person {
 	
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	long id;
 	String firstName, lastName;
 	String email;
 	String address, address2;
 	String city, province, postCode;
-	Country country = Country.CANADA;
+	Country country = Country.CA;
+	/** If they have an executive position */
+	String position;
+	Date expiryDate;
 
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	public long getId() {
 		return id;
 	}
@@ -101,12 +111,55 @@ public class Person {
 		this.postCode = postCode;
 	}
 
+	@Enumerated(EnumType.STRING)
 	public Country getCountry() {
 		return country;
 	}
 
 	public void setCountry(Country country) {
 		this.country = country;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
+	@Temporal(TemporalType.DATE)
+	public Date getExpiryDate() {
+		return expiryDate;
+	}
+
+	public void setExpiryDate(Date expiryDate) {
+		this.expiryDate = expiryDate;
+	}
+	
+	/**
+	 * Canadian Post Codes can be entered in either case
+	 * and with or without the middle space; this
+	 * canonicalizes them to upper case and with the space.
+	 */
+	@PrePersist @PreUpdate
+	public void fixupPostCode() {
+		System.out.println("Person.fixupPostCode()");
+		if (country == Country.CA) {
+			String ananan = getPostCode().toUpperCase();
+			switch(ananan.length()) {
+			case 7: // OK
+				break;
+			case 6: // Missing internal space
+				postCode = 
+					ananan.substring(0,3) + " " +
+					ananan.substring(3);
+				break;
+			default:
+				throw new IllegalStateException(
+					postCode + " not valid Canadian postcode");
+			}
+		}
 	}
 }
 

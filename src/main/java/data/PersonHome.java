@@ -3,7 +3,6 @@ package data;
 import java.io.Serializable;
 
 import javax.annotation.PreDestroy;
-import javax.ejb.Remove;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -46,10 +45,13 @@ public class PersonHome implements Serializable {
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void wire() {
-		conv.begin();
+		if (conv.isTransient()) {
+			conv.begin();
+		}
 		System.out.println("Wire(): " + id);
 		if (id == null) {
-			throw new IllegalStateException("Wire: No ID");
+			instance = new Person();
+			return;
 		}
 		instance = em.find(Person.class, id);
 		if (instance == null) {
@@ -68,11 +70,16 @@ public class PersonHome implements Serializable {
 		em.merge(instance);
 		return "PersonList.web";
 	}
+	
+	public void create() {
+		// Nothing to do, instance is pre-created
+	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public String save() {
 		System.out.println("MemberHome.save()");
 		em.persist(instance);
+		conv.end();
 		return "PersonList.web";
 	}
 
@@ -88,6 +95,7 @@ public class PersonHome implements Serializable {
 		System.out.println("MemberHome.setId(" + id + ")");
 		this.id = id;
 	}
+	
 	public Person getInstance() {
 		System.out.println("MemberHome.getInstance(): " + instance);
 		return instance;
@@ -95,8 +103,12 @@ public class PersonHome implements Serializable {
 	public void setInstance(Person instance) {
 		this.instance = instance;
 	}
+	
+	public String cancel() {
+		conv.end();
+		return "PersonList";
+	}
 
-	@Remove
 	public void remove() {
 		System.out.println("MemberHome.remove()");
 		conv.end();
@@ -117,16 +129,19 @@ public class PersonHome implements Serializable {
 		
 		boolean valid = true;
 		String postCode = (String) userInputValue, message = "??";
-		final Country country = instance.getCountry();
+		Country country = instance.getCountry();
+		if (country == null) {
+			country = Country.CA;
+		}
 		switch(country) {
-		case CANADA:
+		case CA:
 			valid = postCode.matches("\\w\\d\\w ?\\d\\w\\d");
 			message = "PostCode must match ANA NAN pattern";
 			break;
-		case USA:
+		case US:
 			valid = postCode.matches("\\d{5}(-\\d{4})?");
 			message = "Zip Code must be 5 digits, optional -4 digits";
-		case OTHER:
+		case ZZ:
 			break;
 		default:
 			throw new IllegalStateException("Unknown country");

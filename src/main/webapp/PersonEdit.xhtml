@@ -17,22 +17,62 @@
 
 <ui:define name="body">
 
-	<h:form>
+	<h:form id="personForm">
 	<p:panel>
 		<f:facet name="header">Member Edit</f:facet>
-		<h:panelGrid columns='2'>
+		<h:panelGrid columns='3'>
+		
 		Id:
-		<h:inputText value="#{personHome.instance.id}"/>
+		<h:inputText id="idTF" value="#{personHome.instance.id}"/>
+		<h:message id='idMessage' for='firstnameTF'/>
 		
 		First Name:
-		<h:inputText value="#{personHome.instance.firstName}"/>
+		<h:inputText id="firstnameTF" value="#{personHome.instance.firstName}" required='true'/>
+		<h:message id='firstnameMessage' for='firstnameTF'/>
 		
 		Last Name:
-		<h:inputText value="#{personHome.instance.lastName}"/>
+		<h:inputText id="lastnameTF" value="#{personHome.instance.lastName}" required='true'/>
+		<h:message id='lastnameMessage' for='lastnameTF'/>
 	
 		Email:
-		<h:inputText value="#{personHome.instance.email}"/>
+		<h:inputText id="emailTF" value="#{personHome.instance.email}" required='true'>
+			<f:validateRegex pattern="\w+@\w+\.\w+"/>
+			<f:ajax event="blur" render='emailMessage'/>
+		</h:inputText>
+		<h:message id='emailMessage' for='emailTF'/>
+		
+		Position if any:
+		<h:inputText id="positionTF" value="#{personHome.instance.position}"/>
+		<h:message id='positionMessage' for='positionTF'/>
+		
+		Address:
+		<h:inputText id="addressTF" value="#{personHome.instance.address}" required='true'/>
+		<h:message id='addressMessage' for='addressTF'/>
 
+		City:
+		<h:inputText id="cityTF" value="#{personHome.instance.city}" required='true'/>
+		<h:message id='cityMessage' for='cityTF'/>
+		
+		Province,Country,PostCode:
+		<ui:fragment>
+			<h:inputText id="provinceTF" value="#{personHome.instance.province}"/>
+			<p:selectOneMenu id="country" value="#{personHome.instance.country}" style="width:150px">
+                <!-- <p:ajax listener="#{dropdownView.onCountryChange}" update="city" />  -->
+                <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true" />
+                <f:selectItem itemLabel="Canada" itemValue="CA" />
+                <f:selectItem itemLabel="U.S.A." itemValue="US" />
+            </p:selectOneMenu>
+			<h:inputText id="postcodeTF" value="#{personHome.instance.postCode}" 
+				validator="#{personHome.validatePostCode}" required='true'/>
+		</ui:fragment>
+		<ui:fragment>
+			<h:message id='provinceMessage' for='provinceTF'/>
+			<h:message id='postcodeMessage' for='postcodeTF'/>
+		</ui:fragment>
+		
+		<p:outputLabel for="expdt" value="Expiry:" />
+        <p:calendar id="expdt" value="#{personHome.instance.expiryDate}" pattern="yyyy-MM-dd" showOn="button" />
+			
 		</h:panelGrid>
 	</p:panel>
 

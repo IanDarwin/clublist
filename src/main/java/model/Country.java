@@ -1,11 +1,15 @@
 package model;
 
 public enum Country {
-	CANADA("CA"),
-	USA("US"),
-	OTHER("");
-	final String isoName;
-	private Country(final String isoName) {
-		this.isoName = isoName;
+	CA("Canada"),
+	US("USA"),
+	ZZ("Other");
+	
+	final String longName;
+	private Country(final String longName) {
+		this.longName = longName;
+	}
+	public String getCountryName() {
+		return longName;
 	}
 }
