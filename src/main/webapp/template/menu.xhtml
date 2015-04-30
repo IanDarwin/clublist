@@ -1,0 +1,22 @@
+<p:toolbar
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+
+    <p:toolbarGroup>
+        <h:outputLink value="index.html">Home</h:outputLink>
+		#{'  '}
+		<h:outputLink value="PersonList.web">Member List</h:outputLink>
+		#{'  '}
+		<h:outputLink value="PersonEdit.web">Add Member</h:outputLink>
+    </p:toolbarGroup>
+    
+    <p:toolbarGroup align="right">
+        <h:outputText value="signed in as: #{identity.username}" rendered="#{identity.loggedIn}"/>
+        <h:outputLink value="index.web" rendered="#{not identity.loggedIn}">
+			Login
+			</h:outputLink>
+        <h:outputLink value="index.web" action="#{identity.logout}" rendered="#{identity.loggedIn}">Logout</h:outputLink>
+    </p:toolbarGroup>
+</p:toolbar>
