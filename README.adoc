@@ -2,6 +2,13 @@
 
 Track members for a small non-profit club.
 
-This shows off some basic functionality of DeltaSpike Data in a JSF environment.
+This shows off some basic functionality of JPA and DeltaSpike Data in a JSF environment.
 
+== ToDo
+
+"Position" should be a relationship to another Entity, with a dropdown chooser.
+
+"Membership Type" should be a relationship to another Entity, with a dropdown.
+
+Search with 'Like' method in DS Data
 
