@@ -5,25 +5,18 @@
 	version="2.1">
 
 	<persistence-unit name="ucfn">
-
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-
+		<jta-data-source>java:jboss/datasources/UCFNDataSource</jta-data-source>
 		<class>model.Person</class>
-		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 
 		<properties>
-
-			<!-- Properties for PostgreSQL (database must be created) -->
-			<property name="javax.persistence.jtaDataSource" value="java:jboss/datasources/UCFNDatasource"/>
+			<!-- Properties for PostgreSQL -->
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
 
 			<!-- Properties for Hibernate provider -->
 			<property name="hibernate.hbm2ddl.auto" value="update"/>
 			<property name="hibernate.show_sql" value="true"/>
 			<property name="hibernate.format_sql" value="false"/>
-			<property name="hibernate.archive.autodetection" value="class"/>
-			<property name="hibernate.transaction.factory.class" value="org.hibernate.transaction.JTATransactionFactory"/>
-
 		</properties>
 	</persistence-unit>
 </persistence>
