@@ -31,11 +31,6 @@
 			<artifactId>darwinsys-api</artifactId>
 			<version>1.0.5</version>
 		</dependency>
-		<dependency>
-			<groupId>com.darwinsys</groupId>
-			<artifactId>darwinsys-ee</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 	
 		<!-- Java EE API -->
 		<dependency>
