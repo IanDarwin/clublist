@@ -15,9 +15,7 @@ This shows off some basic functionality of JPA and DeltaSpike Data in a JSF envi
 
 == ToDo
 
-Security blankets:
-	1) role="club_exec" only
-	2) later: Member, allow members to update their own record (only!)
+Security: Maybe allow members to update their own record (only!)
 
 Use redirect after editing to really go back to the List page.
 
