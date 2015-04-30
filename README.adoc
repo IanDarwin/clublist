@@ -6,6 +6,10 @@ This shows off some basic functionality of JPA and DeltaSpike Data in a JSF envi
 
 == ToDo
 
+Security blankets:
+	1) role="club_exec" only
+	2) later: Member, allow members to update their own record (only!)
+
 "Position" should be a relationship to another Entity, with a dropdown chooser.
 
 "Membership Type" should be a relationship to another Entity, with a dropdown.
