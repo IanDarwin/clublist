@@ -122,9 +122,11 @@ public class PersonHome implements Serializable {
 		return LIST_PAGE;
 	}
 
-	public void remove() {
+	public String remove() {
 		System.out.println("MemberHome.remove()");
+		em.remove(instance);
 		conv.end();
+		return LIST_PAGE;
 	}
 
 	@PreDestroy
