@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>ucfn</name>
-	<comment>UCFN Database</comment>
+	<name>ClubList</name>
+	<comment>Club Membership Database</comment>
 	<projects>
 	</projects>
 	<buildSpec>
