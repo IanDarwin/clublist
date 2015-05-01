@@ -32,6 +32,7 @@ import model.Person;
 public class PersonHome implements Serializable {
 
 	private static final String LIST_PAGE = "PersonList";
+	private static final String FORCE_REDIRECT = "?faces-redirect=true";
 
 	private static final long serialVersionUID = -2284578724132631798L;
 
@@ -72,7 +73,7 @@ public class PersonHome implements Serializable {
 	public String update() {
 		System.out.println("MemberHome.update()");
 		em.merge(instance);
-		return LIST_PAGE;
+		return LIST_PAGE + FORCE_REDIRECT;
 	}
 	
 	public void create() {
@@ -84,7 +85,7 @@ public class PersonHome implements Serializable {
 		System.out.println("MemberHome.save()");
 		em.persist(instance);
 		conv.end();
-		return LIST_PAGE;
+		return LIST_PAGE + FORCE_REDIRECT;
 	}
 
 	public void newInstance() {
@@ -114,7 +115,7 @@ public class PersonHome implements Serializable {
 	 */
 	public String cancel() {
 		conv.end();
-		return LIST_PAGE;
+		return LIST_PAGE + FORCE_REDIRECT;
 	}
 	
 	/** Like Cancel but for e.g., View page, no conv end.
