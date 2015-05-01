@@ -1,0 +1,29 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/template/template.xhtml">
+
+<ui:define name="pageTitle">About</ui:define>
+
+<ui:define name="body">
+	<h1>About</h1>
+	<p>
+	This is a web application for maintaining small club membership lists.
+	It has the ability to maintain a list at present; planned features include
+	the ability to print lists, print labels, generate expiration reminders,
+	etc.
+	</p>
+	<p>
+	<i>Technology</i>: The site is built using 
+	JavaServer Faces (JSF),
+	Java Persistence Architecture (JPA),
+	Apache DeltaSpike Data,
+	and more. It should run on any standard Java EE 7 (and maybe 6) Application Server.
+	Primarily developed and tested on JBoss WildFly.
+	</p>
+</ui:define>
+</ui:composition>
