@@ -1,4 +1,4 @@
-= club - Club Membership List
+= clublist - Club Membership List
 
 Track members for a small non-profit club.
 
