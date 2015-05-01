@@ -1,0 +1,22 @@
+Contributor Notes
+
+If you improve ClubList, please contribute back!
+
+Create a GitHub account (if you don't already have one)
+“fork” the repository (makes a copy in your account)
+Make and test your changes there.
+Review your changes
+Send a Pull Request
+Code will be reviewed, and incorporated if acceptable
+	Please stick to the existing code style
+	Please don't make radical changes (e.g. moving files around) without asking first
+
+Sending a pull request constitutes your assertion that you are the original
+author of the change(s) and that you have the legal authority on behalf of
+yourself and your employer (if employed) to contribute code for distribution
+under the existing LICENSE.txt file (it is NOT the GPL most companies should
+have no problem with it, but you are responsible for getting the necessary
+approvals for code you contribute).
+
+Thanks!!
+
