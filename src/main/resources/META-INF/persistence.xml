@@ -6,12 +6,17 @@
 
 	<persistence-unit name="clublist" transaction-type="JTA">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<jta-data-source>java:jboss/datasources/ClubListDataSource</jta-data-source>
 		<class>model.Person</class>
 
 		<properties>
 			<!-- Properties for PostgreSQL -->
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+
+			<!-- A local database, for dev/test -->
+			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:clublist" />
+			<property name="javax.persistence.jdbc.user" value="student" />
+			<property name="javax.persistence.jdbc.password" value="student" />
 
 			<!-- Properties for Hibernate provider -->
 			<property name="hibernate.hbm2ddl.auto" value="update"/>
