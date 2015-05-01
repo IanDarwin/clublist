@@ -40,8 +40,15 @@
 			<f:ajax event="blur" render='emailMessage'/>
 		</h:inputText>
 		<h:message id='emailMessage' for='emailTF'/>
+
+		Phones:
+		<ui:fragment>
+			Home: <h:inputText id="homePhoneTF" value="#{personHome.instance.homePhone}"/>
+			Mobile: <h:inputText id="cellPhoneTF" value="#{personHome.instance.cellPhone}"/>
+		</ui:fragment>
+		<h:message id='homePhoneMessage' for='homePhoneTF'/>
 		
-		Position if any:
+		Club Executive Position if any:
 		<h:inputText id="positionTF" value="#{personHome.instance.position}"/>
 		<h:message id='positionMessage' for='positionTF'/>
 		

@@ -25,6 +25,7 @@ public class Person {
 	
 	long id;
 	String firstName, lastName;
+	String homePhone, cellPhone;
 	String email;
 	String address, address2;
 	String city, province, postCode;
@@ -53,16 +54,29 @@ public class Person {
 	public String getLastName() {
 		return lastName;
 	}
-
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+
 	@Transient
 	public String getName() {
 		return getFirstName() + ' ' + getLastName();
 	}
 
+	public String getHomePhone() {
+		return homePhone;
+	}
+	public void setHomePhone(String homePhone) {
+		this.homePhone = homePhone;
+	}
+
+	public String getCellPhone() {
+		return cellPhone;
+	}
+	public void setCellPhone(String cellPhone) {
+		this.cellPhone = cellPhone;
+	}
+	
 	public String getEmail() {
 		return email;
 	}

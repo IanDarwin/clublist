@@ -29,6 +29,12 @@
 				Email:
 				<h:outputText value="#{personHome.instance.email}"/>
 
+				Phone:
+				<ui:fragment>
+				Home: <h:outputText value="#{personHome.instance.homePhone};"/>
+				Mobile: <h:outputText value="#{personHome.instance.cellPhone}"/>
+				</ui:fragment>
+
 				Postion:
 				<h:outputText value="#{personHome.instance.position}"/>
 
@@ -39,7 +45,7 @@
 				<h:outputText value="#{personHome.instance.address}"/>
 
 				City:
-				<h:outputText value="#{personHome.instance.address}"/>
+				<h:outputText value="#{personHome.instance.city}"/>
 
 				Province,Country,PostCode:
 				<ui:fragment>
