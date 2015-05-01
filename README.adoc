@@ -8,7 +8,8 @@ This shows off some basic functionality of JPA and DeltaSpike Data in a JSF envi
 
 . Copy config-sample.properties to config.properties, change the name in the orgName property
 in this file from 'Sample Club' to your organization's name (keep it short).
-. Setup the datasource in your app server
+. Set up a JTA datasource in your app server
+. Change persistence.xml from the in-memory H2 to the JTA datasource
 . Setup the deployment as needed (e.g., edit jboss-deployment.xml)
 . Create a user in the role of club_exec in your app server.
 . Deploy (e.g., mvn wildfly:deploy if you use JBoss WildFly).
@@ -21,7 +22,7 @@ Here are some things that should be added. https://github.com/IanDarwin/clublist
 . Search with 'Like' method in DS Data
 . Use redirect after editing to really go back to the List page.
 . Maybe allow members to update their own record (only!)
-	Probably requires moving to app-managed security since you already have a record for each person.
+Probably requires moving to app-managed security since you already have a record for each person.
 . "Position" should be a relationship to another Entity, with a dropdown chooser.
 . "Membership Type" should be a relationship to another Entity, with a dropdown.
 . A confirmation (p:dialog?) on the Edit->Delete button would be a good idea.
