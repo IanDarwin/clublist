@@ -6,10 +6,11 @@ This shows off some basic functionality of JPA and DeltaSpike Data in a JSF envi
 
 == Deployment
 
-. Copy config-sample.properties to config.properties, change the name from Sample Club to your org's.
+. Copy config-sample.properties to config.properties, change the name in the orgName property
+in this file from 'Sample Club' to your organization's name (keep it short).
 . Setup the datasource in your app server
 . Setup the deployment as needed (e.g., edit jboss-deployment.xml)
-. Createa a user in the role of club_exec in your app server.
+. Create a user in the role of club_exec in your app server.
 . Deploy (e.g., mvn wildfly:deploy if you use JBoss WildFly).
 . Enjoy!
 
@@ -30,5 +31,8 @@ A confirmation (p:dialog?) on the Edit->Delete button would be a good idea.
 Implement the Mailing List page.
 
 Implement the Print Member Badge/Label page.
+
+Even though people should not use spreadsheets for database work, you will probably
+be pressured to impelement the "Export" capability. You will need Apache POI for this.
 
 Refactor Home object to merge w/ darwinsys-ee EntityHome
