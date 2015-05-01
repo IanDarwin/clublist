@@ -11,7 +11,20 @@
 
 <ui:define name="body">
 	<h1>Function not written yet.</h1>
+	<p>
 	This will give the ability to generate a mass mailing to the club membership.
 	And the ability to print mailing labels, if your members are old enough to remember what those are.
+	</p>
+
+	<h:form>
+	<p:panel>
+		<f:facet name="header">Mail a short note</f:facet>
+		<h:inputTextarea rows="5" cols="70" 
+			value="Not working yet. Do not use."/>
+		<br/>
+		<p:button value="Send this email to entire list" enabled="false"/>
+		<p:button value="Send this email to Executive members" enabled="false"/>
+	</p:panel>
+	</h:form>
 </ui:define>
 </ui:composition>
