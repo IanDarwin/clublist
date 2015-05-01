@@ -16,23 +16,17 @@ in this file from 'Sample Club' to your organization's name (keep it short).
 
 == ToDo
 
-Security: Maybe allow members to update their own record (only!)
+Here are some things that should be added. https://github.com/IanDarwin/clublist[Fork this project on GitHub] and send pull requests when you get one working!
 
-Use redirect after editing to really go back to the List page.
-
-"Position" should be a relationship to another Entity, with a dropdown chooser.
-
-"Membership Type" should be a relationship to another Entity, with a dropdown.
-
-Search with 'Like' method in DS Data
-
-A confirmation (p:dialog?) on the Edit->Delete button would be a good idea.
-
-Implement the Mailing List page.
-
-Implement the Print Member Badge/Label page.
-
-Even though people should not use spreadsheets for database work, you will probably
+. Search with 'Like' method in DS Data
+. Use redirect after editing to really go back to the List page.
+. Maybe allow members to update their own record (only!)
+	Probably requires moving to app-managed security since you already have a record for each person.
+. "Position" should be a relationship to another Entity, with a dropdown chooser.
+. "Membership Type" should be a relationship to another Entity, with a dropdown.
+. A confirmation (p:dialog?) on the Edit->Delete button would be a good idea.
+. Implement the Mailing List page.
+. Implement the Print Member Badge/Label page.
+. Even though people should not use spreadsheets for database work, you will probably
 be pressured to impelement the "Export" capability. You will need Apache POI for this.
-
-Refactor Home object to merge w/ darwinsys-ee EntityHome
+. Refactor Home object to merge w/ darwinsys-ee EntityHome
