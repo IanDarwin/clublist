@@ -29,7 +29,7 @@ Probably requires moving to app-managed security since you already have a record
 Note that this will need its own list-detail mechanism to manage the list of Positions!
 . There should be a "Membership Type" (student, senior, couple/family, etc). This should be a relationship to another Entity, with a dropdown (as above).
 . A confirmation (p:dialog?) on the Edit->Delete button would be a good idea.
-. Implement the Mailing List page. For the simple form, use JavaMail.
+. Finish the Mailing List page.
 . Implement the Print Member Badge/Label page.
 . Even though people should not use spreadsheets for database work, you will probably
 be pressured to implement the "Export" capability. 
