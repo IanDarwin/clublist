@@ -19,10 +19,15 @@
 	<h:form>
 	<p:panel>
 		<f:facet name="header">Mail a short note</f:facet>
-		<h:inputTextarea rows="5" cols="70" 
-			value="Not working yet. Do not use."/>
+		<h:panelGrid columns='2'>
+			Subject:
+			<h:inputText value="#{mailMan.subject}" size="70"/>
+			Message:
+			<h:inputTextarea rows="5" cols="70" 
+				value="#{mailMan.messageBody}"/>
+		</h:panelGrid>
 		<br/>
-		<p:button value="Send this email to entire list" enabled="false"/>
+		<h:commandButton value="Send this email to entire list" action="#{mailMan.sendMessageToAll}"/>
 		<p:button value="Send this email to Executive members" enabled="false"/>
 	</p:panel>
 	</h:form>
