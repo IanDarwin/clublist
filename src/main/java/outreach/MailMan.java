@@ -86,35 +86,35 @@ public class MailMan implements Serializable {
 		notNull("message_subject", message_subject);
 		notNull("message_body", message_body);
 		
-        // Create the Session object
-        Session session = 
-        	Session.getDefaultInstance(props, null);
-        session.setDebug(true);         // Verbose!
- 
-                // create a message
-                Message mesg = new MimeMessage(session);
+		// Create the Session object
+		Session session = 
+				Session.getDefaultInstance(props, null);
+		session.setDebug(true);         // Verbose!
 
-                // From Address
-                final InternetAddress fromInternetAddress = new InternetAddress(fromAddress);
-				mesg.setFrom(fromInternetAddress);
-                // Send ourself a copy as well CC Address
-                mesg.addRecipient(Message.RecipientType.BCC, fromInternetAddress);
+		// create a message
+		Message mesg = new MimeMessage(session);
 
-                // TO Addresses - may be a lot!
-                for (String message_recip : emails) {
-                	InternetAddress toAddress = new InternetAddress(message_recip);
-                	mesg.addRecipient(Message.RecipientType.TO, toAddress);
-                }
-                
-                // The Subject
-                mesg.setSubject(message_subject);
+		// From Address
+		final InternetAddress fromInternetAddress = new InternetAddress(fromAddress);
+		mesg.setFrom(fromInternetAddress);
+		// Send ourself a copy as well CC Address
+		mesg.addRecipient(Message.RecipientType.BCC, fromInternetAddress);
 
-                // Now the message body.
-                mesg.setText(message_body);
-                // XXX I18N: use setText(msgText.getText(), charset)
-                
-                // Finally, send the message!
-                Transport.send(mesg);
+		// TO Addresses - may be a lot!
+		for (String message_recip : emails) {
+			InternetAddress toAddress = new InternetAddress(message_recip);
+			mesg.addRecipient(Message.RecipientType.TO, toAddress);
+		}
+
+		// The Subject
+		mesg.setSubject(message_subject);
+
+		// Now the message body.
+		mesg.setText(message_body);
+		// XXX I18N: use setText(msgText.getText(), charset)
+
+		// Finally, send the message!
+		Transport.send(mesg);
 
 	}
 
