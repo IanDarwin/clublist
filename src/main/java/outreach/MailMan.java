@@ -1,5 +1,7 @@
 package outreach;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,10 @@ import data.PersonList;
 @ManagedBean(name="mailMan") @RequestScoped
 public class MailMan implements Serializable {
 
+	private static final String PROPNAME_MAIL_SMTP_HOST = "mail.smtp.host";
+
+	private static final String CONFIG_PROPERTIES_NAME = "/config.properties";
+
 	private static final long serialVersionUID = -1980670543127065573L;
 
 	@Inject
@@ -29,11 +35,29 @@ public class MailMan implements Serializable {
 	String subject;
 	String messageBody;
 	
+	static final Properties props = 
+		propsFromClassPath(MailMan.class, CONFIG_PROPERTIES_NAME);
+	
 	public MailMan() {
 		System.out.println("MailMan.MailMan()");
 	}
 	
-	public void sendMessageToAll() {
+	private static Properties propsFromClassPath(Class<?> clazz, String propsName) {
+		try (InputStream is = clazz.getResourceAsStream(propsName)) {
+			if (is == null) {
+				throw new IllegalArgumentException(
+					"File " + propsName + " not on CLASSPATH for " + clazz.getName());
+			}
+			Properties p = new Properties();
+			p.load(is);
+			return p;
+		} catch (IOException e) {
+			throw new IllegalStateException(
+				"CANTHAPPEN: IOException in close of resource " + propsName);
+		}
+	}
+
+	public void sendMessageToAll() throws MessagingException {
 		System.out.println("MailMan.sendMessageToAll()");
 		List<Person> all = lister.findAll();
 		List<String> emails = new ArrayList<>(all.size());
@@ -43,32 +67,30 @@ public class MailMan implements Serializable {
 				emails.add(email);
 			}
 		}
-		sendMessage("localhost", 
+		final String mailHostProperty = props.getProperty(PROPNAME_MAIL_SMTP_HOST);
+		if (mailHostProperty == null) {
+			throw new IllegalStateException(
+				PROPNAME_MAIL_SMTP_HOST + " not set in " + CONFIG_PROPERTIES_NAME);
+		}
+		sendMessage(mailHostProperty, 
 				"sender@clublist.mock", emails, 
 				subject, messageBody);
 	}
 
 	private void sendMessage(String smtpHost, 
 			String fromAddress, List<String> emails, 
-			String message_subject, String message_body) {
+			String message_subject, String message_body) throws MessagingException {
 		
 		notNull("smtpHost", smtpHost);
 		notNull("fromAddress", fromAddress);
 		notNull("message_subject", message_subject);
 		notNull("message_body", message_body);
 		
-		// We need to pass info to the mail server as a Properties, since
-        // JavaMail (wisely) allows room for LOTS of properties...
-        Properties props = new Properties();
-
-        // The name of the server to send mail out through.
-        props.put("mail.smtp.host", smtpHost);
-
         // Create the Session object
-        Session session = Session.getDefaultInstance(props, null);
+        Session session = 
+        	Session.getDefaultInstance(props, null);
         session.setDebug(true);         // Verbose!
-        
-        try {
+ 
                 // create a message
                 Message mesg = new MimeMessage(session);
 
@@ -93,10 +115,6 @@ public class MailMan implements Serializable {
                 
                 // Finally, send the message!
                 Transport.send(mesg);
-
-        } catch (MessagingException ex) {
-        	throw new RuntimeException("Message failed", ex);
-        }
 
 	}
 
