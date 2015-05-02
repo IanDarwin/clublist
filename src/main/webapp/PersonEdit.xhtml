@@ -36,7 +36,7 @@
 	
 		Email:
 		<h:inputText id="emailTF" value="#{personHome.instance.email}" required='true'>
-			<f:validateRegex pattern="\w+@\w+\.\w+"/>
+			<f:validateRegex pattern="\w+([._]\w+)?@\w+\.\w+"/>
 			<f:ajax event="blur" render='emailMessage'/>
 		</h:inputText>
 		<h:message id='emailMessage' for='emailTF'/>
