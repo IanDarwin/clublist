@@ -72,16 +72,15 @@ public class MailMan implements Serializable {
 			throw new IllegalStateException(
 				PROPNAME_MAIL_SMTP_HOST + " not set in " + CONFIG_PROPERTIES_NAME);
 		}
-		sendMessage(mailHostProperty, 
-				"sender@clublist.mock", emails, 
+		sendMessage(props.getProperty("mail.sender"),
+				emails, 
 				subject, messageBody);
 	}
 
-	private void sendMessage(String smtpHost, 
+	private void sendMessage(
 			String fromAddress, List<String> emails, 
 			String message_subject, String message_body) throws MessagingException {
 		
-		notNull("smtpHost", smtpHost);
 		notNull("fromAddress", fromAddress);
 		notNull("message_subject", message_subject);
 		notNull("message_body", message_body);
