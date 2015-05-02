@@ -15,6 +15,9 @@ in this file from 'Sample Club' to your organization's name (keep it short).
 . Deploy (e.g., mvn wildfly:deploy if you use JBoss WildFly).
 . Enjoy!
 
+If you want to be able to send emails to your club, you'll need some additional
+configuration, which is under development at the moment.
+
 == ToDo
 
 Here are some things that should be added. https://github.com/IanDarwin/clublist[Fork this project on GitHub] and send pull requests when you get one working!
