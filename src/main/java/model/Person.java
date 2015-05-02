@@ -33,6 +33,25 @@ public class Person {
 	/** If they have an executive position */
 	String position;
 	Date expiryDate;
+	
+	/** 
+	 * "A very public Person"
+	 */
+	public Person() {
+		
+	}
+
+	/**
+	 * This constructor is likely only useful in testing
+	 * @param firstName First Name
+	 * @param lastName Last Name
+	 * @param email Email address
+	 */
+	public Person(String firstName, String lastName, String email) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+	}
 
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	public long getId() {
