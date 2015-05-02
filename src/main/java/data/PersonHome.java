@@ -45,7 +45,7 @@ public class PersonHome implements Serializable {
 	@PersistenceContext(type=PersistenceContextType.EXTENDED) EntityManager em;
 
 	public PersonHome() {
-		System.out.println("MemberHome.MemberHome()");
+		System.out.println("PersonHome.PersonHome()");
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
@@ -64,14 +64,14 @@ public class PersonHome implements Serializable {
 		}
 	}
 	public void wire(Long id) {
-		System.out.println("MemberHome.wire(" + id + ")");
+		System.out.println("PersonHome.wire(" + id + ")");
 		setId(id);
 		wire();
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public String update() {
-		System.out.println("MemberHome.update()");
+		System.out.println("PersonHome.update()");
 		em.merge(instance);
 		return LIST_PAGE + FORCE_REDIRECT;
 	}
@@ -82,14 +82,14 @@ public class PersonHome implements Serializable {
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public String save() {
-		System.out.println("MemberHome.save()");
+		System.out.println("PersonHome.save()");
 		em.persist(instance);
 		conv.end();
 		return LIST_PAGE + FORCE_REDIRECT;
 	}
 
 	public void newInstance() {
-		System.out.println("MemberHome.newInstance()");
+		System.out.println("PersonHome.newInstance()");
 		instance = new Person();
 	}
 
@@ -97,12 +97,12 @@ public class PersonHome implements Serializable {
 		return id;
 	}
 	public void setId(Long id) {
-		System.out.println("MemberHome.setId(" + id + ")");
+		System.out.println("PersonHome.setId(" + id + ")");
 		this.id = id;
 	}
 	
 	public Person getInstance() {
-		System.out.println("MemberHome.getInstance(): " + instance);
+		System.out.println("PersonHome.getInstance(): " + instance);
 		return instance;
 	}
 	public void setInstance(Person instance) {
@@ -126,7 +126,7 @@ public class PersonHome implements Serializable {
 	}
 
 	public String remove() {
-		System.out.println("MemberHome.remove()");
+		System.out.println("PersonHome.remove()");
 		em.remove(instance);
 		conv.end();
 		return LIST_PAGE;
@@ -134,7 +134,7 @@ public class PersonHome implements Serializable {
 
 	@PreDestroy
 	public void bfn() {
-		System.out.println("MemberHome.bfn()");
+		System.out.println("PersonHome.bfn()");
 	}
 
 	/**
