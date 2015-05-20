@@ -31,10 +31,10 @@ import model.Person;
 @Stateful @Named @ConversationScoped
 public class PersonHome implements Serializable {
 
+	private static final long serialVersionUID = -2284578724132631798L;
+
 	private static final String LIST_PAGE = "PersonList";
 	private static final String FORCE_REDIRECT = "?faces-redirect=true";
-
-	private static final long serialVersionUID = -2284578724132631798L;
 
 	@Inject Conversation conv;
 
@@ -60,7 +60,7 @@ public class PersonHome implements Serializable {
 		}
 		instance = em.find(Person.class, id);
 		if (instance == null) {
-			System.err.println("Person not found by id! " + id);
+			throw new IllegalArgumentException("Person not found by id! " + id);
 		}
 	}
 	public void wire(Long id) {
@@ -107,6 +107,7 @@ public class PersonHome implements Serializable {
 	}
 	public void setInstance(Person instance) {
 		this.instance = instance;
+		// this.id = instance.getId();
 	}
 	
 	/** Close an editing operation: just end conversation,
