@@ -26,9 +26,9 @@
         <h:outputText value="signed in as: #{identity.username}" rendered="#{identity.loggedIn}"/>
         <h:outputLink value="index.web" rendered="#{not identity.loggedIn}">
 			Login
-			</h:outputLink>
+		</h:outputLink>
+		-->
         <h:outputLink value="index.web" action="#{identity.logout}" 
 			rendered="#{identity.loggedIn}">Logout</h:outputLink>
-		-->
     </p:toolbarGroup>
 </p:toolbar>
