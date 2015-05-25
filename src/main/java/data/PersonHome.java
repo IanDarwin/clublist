@@ -110,8 +110,7 @@ public class PersonHome implements Serializable {
 		// this.id = instance.getId();
 	}
 	
-	/** Close an editing operation: just end conversation,
-	 * return List page.
+	/** Close an editing operation: just end conversation, return List page.
 	 * @return The List Page
 	 */
 	public String cancel() {
@@ -123,14 +122,14 @@ public class PersonHome implements Serializable {
 	 * @return The List Page
 	 */
 	public String done() {
-		return LIST_PAGE;
+		return LIST_PAGE + FORCE_REDIRECT;
 	}
 
 	public String remove() {
 		System.out.println("PersonHome.remove()");
 		em.remove(instance);
 		conv.end();
-		return LIST_PAGE;
+		return LIST_PAGE + FORCE_REDIRECT;
 	}
 
 	@PreDestroy
