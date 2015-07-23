@@ -16,6 +16,10 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<javase.version>1.7</javase.version>
+		<maven.compiler.source>${javase.version}</maven.compiler.source>
+		<maven.compiler.target>${javase.version}</maven.compiler.target>
+		<maven.compiler.testSource>${javase.version}</maven.compiler.testSource>
+		<maven.compiler.testTarget>${javase.version}</maven.compiler.testTarget>
 		<javaee.version>7.0</javaee.version>
 		<primefaces.version>5.2</primefaces.version>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -60,8 +64,7 @@
 			<version>${deltaspike.version}</version>
 			<scope>runtime</scope>
 		</dependency>
-
-		<!-- javassist needed on classpath for dynamic code gen -->
+		<!-- javassist needed on classpath for Dataspike Data dynamic code gen -->
 		<dependency>
 			<groupId>org.javassist</groupId>
 			<artifactId>javassist</artifactId>
@@ -99,15 +102,6 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
-				</configuration>
-			</plugin>
 
 			<!-- Java EE AppServer: WildFly (JBoss) -->
 			<plugin>
