@@ -76,10 +76,7 @@ public class PersonHome implements Serializable {
 		return LIST_PAGE + FORCE_REDIRECT;
 	}
 	
-	public void create() {
-		// Nothing to do, instance is pre-created
-	}
-
+	/** The C of CRUD - create a new T in the database */
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public String save() {
 		System.out.println("PersonHome.save()");
@@ -125,6 +122,7 @@ public class PersonHome implements Serializable {
 		return LIST_PAGE + FORCE_REDIRECT;
 	}
 
+	/** The D of CRUD - delete an Entity. Use with care! */
 	public String remove() {
 		System.out.println("PersonHome.remove()");
 		em.remove(instance);
@@ -179,6 +177,7 @@ public class PersonHome implements Serializable {
 		case US:
 			valid = postCode.matches("\\d{5}(-\\d{4})?");
 			invalidMessage.value = "Zip Code must be 5 digits, optional -4 digits";
+			break;
 		case ZZ:
 			break;
 		default:
