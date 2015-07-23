@@ -12,7 +12,7 @@
 			<!-- Properties for PostgreSQL -->
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
 
-			<!-- A local database, for dev/test -->
+			<!-- A local database, for running during development -->
 			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:clublist" />
 			<property name="javax.persistence.jdbc.user" value="student" />
