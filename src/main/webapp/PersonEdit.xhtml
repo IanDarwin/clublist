@@ -11,7 +11,7 @@
 <h:head>
 <f:metadata>
     <f:event type="preRenderView" rendered="#{!empty request.getParameter('personId')}" listener="#{personHome.wire(request.getParameter('personId'))}"/>
-    <f:event type="preRenderView" rendered="#{ empty request.getParameter('personId')}" listener="#{personHome.create()}"/>
+    <f:event type="preRenderView" rendered="#{ empty request.getParameter('personId')}" listener="#{personHome.wire()}"/>
 </f:metadata>
 </h:head>
 
