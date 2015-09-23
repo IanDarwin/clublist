@@ -41,7 +41,8 @@ public class MemberValidatorEmailTest {
 	
 	@Test
 	public void test() {
-		assertSame(expected, MemberHome.validateEmail(email, messageHolder));
+		System.out.println("Testing: " + email);
+		assertSame(expected, MemberValidator.validateEmail(email, messageHolder));
 	}
 
 }

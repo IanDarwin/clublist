@@ -143,7 +143,7 @@ public class MemberHome implements Serializable {
 		boolean valid = true;
 		String email = (String) userInputValue;
 		StringHolder messageHolder = new StringHolder();
-		valid = validateEmail(email, messageHolder);
+		valid = MemberValidator.validateEmail(email, messageHolder);
 		if (!valid) {
 			jsfContext.addMessage(
 					toValidate.getClientId(jsfContext), 
@@ -153,19 +153,6 @@ public class MemberHome implements Serializable {
 		}
 	}
 	
-	/** Validate an email. Method is exposed only to facilitate testing
-	 * @param email The email address to be validated
-	 * @param messageHolder The response holder
-	 * @return True if the message is not invalid
-	 */
-	static boolean validateEmail(String email, StringHolder messageHolder) {
-		boolean valid = true;
-		if (email == null || email.length() == 0) 
-			return valid;
-		messageHolder.value = "Invalid email syntax, I think";
-		return email.matches("[\\w.]+@[\\w.]+\\.\\w+");
-	}
-
 	/**
 	 * Simple validation of a method in a "home"-type object
 	 * that can validate based on related state
@@ -181,7 +168,7 @@ public class MemberHome implements Serializable {
 			country = Country.CA;
 		}
 		StringHolder messageHolder = new StringHolder();
-		valid = validatePostCode(country, postCode, messageHolder);
+		valid = MemberValidator.validatePostCode(country, postCode, messageHolder);
 		if (!valid) {
 			jsfContext.addMessage(
 					toValidate.getClientId(jsfContext), 
@@ -189,31 +176,5 @@ public class MemberHome implements Serializable {
 	        ((UIInput) toValidate).setValid(false);
 	        return;
 		}
-	}
-
-	/** 
-	 * Method is NOT API and is only public for testing
-	 * @param country The country
-	 * @param postCode The post code
-	 * @param invalidMessage A holder for a message if invalid
-	 * @return The syntactic validity of the given code
-	 */
-	public boolean validatePostCode(Country country, String postCode, StringHolder invalidMessage) {
-		boolean valid = true;
-		switch(country) {
-		case CA:
-			valid = postCode.matches("\\w\\d\\w ?\\d\\w\\d");
-			invalidMessage.value = "PostCode must match ANA NAN pattern";
-			break;
-		case US:
-			valid = postCode.matches("\\d{5}(-\\d{4})?");
-			invalidMessage.value = "Zip Code must be 5 digits, optional -4 digits";
-			break;
-		case ZZ:
-			break;
-		default:
-			throw new IllegalArgumentException("Unknown country");
-		}
-		return valid;
 	}
 }
