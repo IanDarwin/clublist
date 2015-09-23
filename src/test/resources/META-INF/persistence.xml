@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+    	http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/persistence/persistence_2_1.xsd"
+    version="2.1">
+    
+	<persistence-unit name="clublist" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>model.Member</class>
+
+		<properties>
+			<!-- Properties for type of database -->
+			<property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.HSQLPlatform"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
+
+			<!-- A local database, for dev/test -->
+			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:clublist" />
+			<property name="javax.persistence.jdbc.user" value="sa" />
+			<property name="javax.persistence.jdbc.password" value="" />
+
+			<!-- Properties for Hibernate provider -->
+			<property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+			<property name="hibernate.show_sql" value="true"/>
+			<property name="hibernate.format_sql" value="false"/>
+		</properties>
+	</persistence-unit>
+</persistence>

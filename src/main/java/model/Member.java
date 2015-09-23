@@ -2,7 +2,6 @@ package model;
 
 import java.util.Date;
 
-import javax.faces.bean.ManagedBean;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -16,12 +15,11 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 /**
- * Represents one person in our database.
+ * Member - represents one person in our database.
  * @author Ian Darwin
  */
 @Entity
-@ManagedBean
-public class Person {
+public class Member {
 	
 	long id;
 	String firstName, lastName;
@@ -37,7 +35,7 @@ public class Person {
 	/** 
 	 * "A very public Person"
 	 */
-	public Person() {
+	public Member() {
 		
 	}
 
@@ -47,7 +45,7 @@ public class Person {
 	 * @param lastName Last Name
 	 * @param email Email address
 	 */
-	public Person(String firstName, String lastName, String email) {
+	public Member(String firstName, String lastName, String email) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -177,7 +175,7 @@ public class Person {
 	 */
 	@PrePersist @PreUpdate
 	public void fixupPostCode() {
-		System.out.println("Person.fixupPostCode()");
+		System.out.println("Member.fixupPostCode()");
 		if (country == Country.CA) {
 			String ananan = getPostCode().toUpperCase();
 			switch(ananan.length()) {

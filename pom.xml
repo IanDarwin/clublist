@@ -15,12 +15,15 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<javase.version>1.7</javase.version>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<javase.version>1.8</javase.version>
 		<maven.compiler.source>${javase.version}</maven.compiler.source>
 		<maven.compiler.target>${javase.version}</maven.compiler.target>
 		<maven.compiler.testSource>${javase.version}</maven.compiler.testSource>
 		<maven.compiler.testTarget>${javase.version}</maven.compiler.testTarget>
 		<javaee.version>7.0</javaee.version>
+		<hibernate.version>4.3.8.Final</hibernate.version>
+		<hibernate.validator.version>4.3.2.Final</hibernate.validator.version>
 		<primefaces.version>5.2</primefaces.version>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<build.plugins.plugin.version>1.0.1</build.plugins.plugin.version>
@@ -34,6 +37,11 @@
 			<groupId>com.darwinsys</groupId>
 			<artifactId>darwinsys-api</artifactId>
 			<version>1.0.5</version>
+		</dependency>
+		<dependency>
+			<groupId>com.darwinsys</groupId>
+			<artifactId>darwinsys-ee</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	
 		<!-- Java EE API -->
@@ -64,7 +72,8 @@
 			<version>${deltaspike.version}</version>
 			<scope>runtime</scope>
 		</dependency>
-		<!-- javassist needed on classpath for Dataspike Data dynamic code gen -->
+
+		<!-- javassist needed on classpath for dynamic code gen -->
 		<dependency>
 			<groupId>org.javassist</groupId>
 			<artifactId>javassist</artifactId>
@@ -79,6 +88,40 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<!-- OmniFaces utility add-on -->
+		<dependency>
+			<groupId>org.omnifaces</groupId>
+			<artifactId>omnifaces</artifactId>
+			<version>2.0</version>
+		</dependency>
+
+		<!-- Hibernate and its JPA Provider: test scope -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernate.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- Hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernate.validator.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.185</version>
+			<scope>test</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
@@ -91,6 +134,18 @@
 			<version>(4.8,5.0)</version>
 			<scope>test</scope>
 		</dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-api-mockito</artifactId>
+            <version>1.6.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-module-junit4</artifactId>
+            <version>1.6.2</version>
+            <scope>test</scope>
+        </dependency>
 
 		<dependency>
 			<groupId>commons-fileupload</groupId>

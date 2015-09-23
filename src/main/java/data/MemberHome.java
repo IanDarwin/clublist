@@ -21,7 +21,7 @@ import javax.persistence.PersistenceContextType;
 import org.omg.CORBA.StringHolder;
 
 import model.Country;
-import model.Person;
+import model.Member;
 
 /**
  * Implements Gateway, an Adam Bien pattern whose purpose is to expose
@@ -29,23 +29,23 @@ import model.Person;
  * @author Ian Darwin
  */
 @Stateful @Named @ConversationScoped
-public class PersonHome implements Serializable {
+public class MemberHome implements Serializable {
 
 	private static final long serialVersionUID = -2284578724132631798L;
 
-	private static final String LIST_PAGE = "PersonList";
+	private static final String LIST_PAGE = "MemberList";
 	private static final String FORCE_REDIRECT = "?faces-redirect=true";
 
 	@Inject Conversation conv;
 
 	// Must be Long (not long) so we can check for null
 	private Long id;
-	private Person instance = new Person();
+	private Member instance = new Member();
 
 	@PersistenceContext(type=PersistenceContextType.EXTENDED) EntityManager em;
 
-	public PersonHome() {
-		System.out.println("PersonHome.PersonHome()");
+	public MemberHome() {
+		System.out.println("MemberHome.MemberHome()");
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
@@ -55,23 +55,23 @@ public class PersonHome implements Serializable {
 		}
 		System.out.println("Wire(): " + id);
 		if (id == null) {
-			instance = new Person();
+			instance = new Member();
 			return;
 		}
-		instance = em.find(Person.class, id);
+		instance = em.find(Member.class, id);
 		if (instance == null) {
-			throw new IllegalArgumentException("Person not found by id! " + id);
+			throw new IllegalArgumentException("Member not found by id! " + id);
 		}
 	}
 	public void wire(Long id) {
-		System.out.println("PersonHome.wire(" + id + ")");
+		System.out.println("MemberHome.wire(" + id + ")");
 		setId(id);
 		wire();
 	}
 
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public String update() {
-		System.out.println("PersonHome.update()");
+		System.out.println("MemberHome.update()");
 		em.merge(instance);
 		return LIST_PAGE + FORCE_REDIRECT;
 	}
@@ -79,30 +79,30 @@ public class PersonHome implements Serializable {
 	/** The C of CRUD - create a new T in the database */
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public String save() {
-		System.out.println("PersonHome.save()");
+		System.out.println("MemberHome.save()");
 		em.persist(instance);
 		conv.end();
 		return LIST_PAGE + FORCE_REDIRECT;
 	}
 
 	public void newInstance() {
-		System.out.println("PersonHome.newInstance()");
-		instance = new Person();
+		System.out.println("MemberHome.newInstance()");
+		instance = new Member();
 	}
 
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
-		System.out.println("PersonHome.setId(" + id + ")");
+		System.out.println("MemberHome.setId(" + id + ")");
 		this.id = id;
 	}
 	
-	public Person getInstance() {
-		System.out.println("PersonHome.getInstance(): " + instance);
+	public Member getInstance() {
+		System.out.println("MemberHome.getInstance(): " + instance);
 		return instance;
 	}
-	public void setInstance(Person instance) {
+	public void setInstance(Member instance) {
 		this.instance = instance;
 		// this.id = instance.getId();
 	}
@@ -124,7 +124,7 @@ public class PersonHome implements Serializable {
 
 	/** The D of CRUD - delete an Entity. Use with care! */
 	public String remove() {
-		System.out.println("PersonHome.remove()");
+		System.out.println("MemberHome.remove()");
 		em.remove(instance);
 		conv.end();
 		return LIST_PAGE + FORCE_REDIRECT;
@@ -132,7 +132,7 @@ public class PersonHome implements Serializable {
 
 	@PreDestroy
 	public void bfn() {
-		System.out.println("PersonHome.bfn()");
+		System.out.println("MemberHome.bfn()");
 	}
 
 	/**

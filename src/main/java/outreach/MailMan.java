@@ -17,8 +17,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import model.Person;
-import data.PersonList;
+import model.Member;
+import data.MemberList;
 
 @ManagedBean(name="mailMan") @RequestScoped
 public class MailMan implements Serializable {
@@ -30,7 +30,7 @@ public class MailMan implements Serializable {
 	private static final long serialVersionUID = -1980670543127065573L;
 
 	@Inject
-	PersonList lister;
+	MemberList lister;
 	
 	String subject;
 	String messageBody;
@@ -59,9 +59,9 @@ public class MailMan implements Serializable {
 
 	public void sendMessageToAll() throws MessagingException {
 		System.out.println("MailMan.sendMessageToAll()");
-		List<Person> all = lister.findAll();
+		List<Member> all = lister.findAll();
 		List<String> emails = new ArrayList<>(all.size());
-		for (Person p : all) {
+		for (Member p : all) {
 			final String email = p.getEmail();
 			if (email != null) {
 				emails.add(email);

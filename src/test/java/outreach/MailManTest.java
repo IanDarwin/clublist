@@ -9,25 +9,25 @@ import java.util.List;
 
 import javax.mail.MessagingException;
 
-import model.Person;
+import model.Member;
 
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import data.PersonList;
+import data.MemberList;
 
 public class MailManTest {
 
-	List<Person> fakeList = Arrays.asList(
+	List<Member> fakeList = Arrays.asList(
 			// XXX Grab the Sender email from the config.props and use that!
-			new Person("Tom", "Jones", "devnull@ojwkjsflkjew.com")
+			new Member("Tom", "Jones", "devnull@ojwkjsflkjew.com")
 	);
 	private MailMan sender;
 	
 	@Before
 	public void init() {
-		PersonList lister = mock(PersonList.class);
+		MemberList lister = mock(MemberList.class);
 		when(lister.findAll()).thenReturn(fakeList);
 		sender = new MailMan();
 		sender.lister = lister;
