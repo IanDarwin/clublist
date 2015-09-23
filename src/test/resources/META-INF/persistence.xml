@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
-    	http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/persistence/persistence_2_1.xsd"
-    version="2.1">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+		http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/persistence/persistence_2_1.xsd"
+	version="2.1">
     
 	<persistence-unit name="clublist" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
@@ -11,7 +11,8 @@
 
 		<properties>
 			<!-- Properties for type of database -->
-			<property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.HSQLPlatform"/>
+			<property name="eclipselink.target-database"
+				value="org.eclipse.persistence.platform.database.HSQLPlatform"/>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
 
 			<!-- A local database, for dev/test -->

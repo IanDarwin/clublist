@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence xmlns="http://java.sun.com/xml/ns/persistence"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml//tickns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_1.xsd"
-	version="2.1">
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+    	http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/persistence/persistence_2_1.xsd"
+    version="2.1">
 
 	<persistence-unit name="clublist" transaction-type="JTA">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<class>model.Person</class>
+		<class>model.Member</class>
 
 		<properties>
-			<!-- Properties for PostgreSQL -->
-			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+			<!-- Properties for type of database -->
+			<property name="eclipselink.target-database"
+				value="org.eclipse.persistence.platform.database.HSQLPlatform"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
 
 			<!-- A local database, for running during development -->
 			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
