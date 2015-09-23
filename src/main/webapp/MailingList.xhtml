@@ -21,10 +21,10 @@
 		<f:facet name="header">Mail a short note</f:facet>
 		<h:panelGrid columns='2'>
 			Subject:
-			<h:inputText value="#{mailMan.subject}" size="70"/>
+			<h:inputText value="#{mailMan.subject}" size="70" required="true"/>
 			Message:
 			<h:inputTextarea rows="5" cols="70" 
-				value="#{mailMan.messageBody}"/>
+				value="#{mailMan.messageBody}" required="true"/>
 		</h:panelGrid>
 		<br/>
 		<h:commandButton value="Send this email to entire list" action="#{mailMan.sendMessageToAll}"/>
