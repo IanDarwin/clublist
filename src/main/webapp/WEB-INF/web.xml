@@ -7,7 +7,7 @@
 	<display-name>Club Members Database</display-name>
 
 	<welcome-file-list>
-		<welcome-file>PersonList.web</welcome-file>
+		<welcome-file>MemberList.web</welcome-file>
 	</welcome-file-list>
 
 	<!-- JSF Servlet -->
