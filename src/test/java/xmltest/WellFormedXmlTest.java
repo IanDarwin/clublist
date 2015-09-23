@@ -7,6 +7,7 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -29,8 +30,19 @@ public class WellFormedXmlTest {
 
 	final File xmlFile;
 	
+	static DocumentBuilder parser;
+	
+	/** "public" constructor, only called by JUnit param runner */
 	public WellFormedXmlTest(File xmlFile) {
 		this.xmlFile = xmlFile;
+	}
+	
+	@BeforeClass
+	public static void setupParser() throws Exception {
+		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		// Disable loading of DTDs; we just want a quick syntax parse
+		dbFactory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+		parser = dbFactory.newDocumentBuilder();
 	}
 
 	/**
@@ -78,10 +90,6 @@ public class WellFormedXmlTest {
 				System.err.println( "Parsing " + xmlFile.getAbsolutePath() + "...");
 			}
 			
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-			// Disable loading of DTDs; we just want a quick syntax parse
-			dbFactory.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
-			DocumentBuilder parser = dbFactory.newDocumentBuilder();
 			parser.parse(xmlFile);
 			// If we get here, it parsed OK
 	}
