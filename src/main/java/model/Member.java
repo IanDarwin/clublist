@@ -175,6 +175,9 @@ public class Member {
 	 */
 	@PrePersist @PreUpdate
 	public void fixupPostCode() {
+		if (getPostCode() == null) {
+			return;
+		}
 		System.out.println("Member.fixupPostCode()");
 		if (country == Country.CA) {
 			String ananan = getPostCode().toUpperCase();
