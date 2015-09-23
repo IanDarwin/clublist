@@ -135,6 +135,37 @@ public class MemberHome implements Serializable {
 		System.out.println("MemberHome.bfn()");
 	}
 
+	/** Validate the email in a Member object; JSF-specific */
+	public void validateEmail(FacesContext jsfContext,
+            UIComponent toValidate, 
+            Object userInputValue) {
+		
+		boolean valid = true;
+		String email = (String) userInputValue;
+		StringHolder messageHolder = new StringHolder();
+		valid = validateEmail(email, messageHolder);
+		if (!valid) {
+			jsfContext.addMessage(
+					toValidate.getClientId(jsfContext), 
+					new FacesMessage(messageHolder.value));
+	        ((UIInput) toValidate).setValid(false);
+	        return;
+		}
+	}
+	
+	/** Validate an email. Method is exposed only to facilitate testing
+	 * @param email The email address to be validated
+	 * @param messageHolder The response holder
+	 * @return True if the message is not invalid
+	 */
+	static boolean validateEmail(String email, StringHolder messageHolder) {
+		boolean valid = true;
+		if (email == null || email.length() == 0) 
+			return valid;
+		messageHolder.value = "Invalid email syntax, I think";
+		return email.matches("[\\w.]+@[\\w.]+\\.\\w+");
+	}
+
 	/**
 	 * Simple validation of a method in a "home"-type object
 	 * that can validate based on related state
@@ -181,7 +212,7 @@ public class MemberHome implements Serializable {
 		case ZZ:
 			break;
 		default:
-			throw new IllegalStateException("Unknown country");
+			throw new IllegalArgumentException("Unknown country");
 		}
 		return valid;
 	}
