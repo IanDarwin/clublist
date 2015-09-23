@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!--
- *** Person Details page
+ *** Member Details page
  -->
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
@@ -12,52 +12,52 @@
 <ui:define name="pageTitle">Member</ui:define>
 <h:head>
 <f:metadata>
-    <f:event type="preRenderView" rendered="#{!empty request.getParameter('personId')}" listener="#{personHome.wire(request.getParameter('personId'))}"/>
+    <f:event type="preRenderView" rendered="#{!empty request.getParameter('memberId')}" listener="#{memberHome.wire(request.getParameter('memberId'))}"/>
 </f:metadata>
 </h:head>
 
 	<ui:define name="pageHeader">Member View</ui:define>
 
 	<ui:define name="body">
-			<p:panelGrid columns="2" title="PersonView">
+			<p:panelGrid columns="2" title="MemberView">
 				FirstName:
-				<h:outputText value="#{personHome.instance.firstName}"/>
+				<h:outputText value="#{memberHome.instance.firstName}"/>
 
 				LastName:
-				<h:outputText value="#{personHome.instance.lastName}"/>
+				<h:outputText value="#{memberHome.instance.lastName}"/>
 
 				Email:
-				<h:outputText value="#{personHome.instance.email}"/>
+				<h:outputText value="#{memberHome.instance.email}"/>
 
 				Phone:
 				<ui:fragment>
-				Home: <h:outputText value="#{personHome.instance.homePhone};"/>
-				Mobile: <h:outputText value="#{personHome.instance.cellPhone}"/>
+				Home: <h:outputText value="#{memberHome.instance.homePhone};"/>
+				Mobile: <h:outputText value="#{memberHome.instance.cellPhone}"/>
 				</ui:fragment>
 
 				Postion:
-				<h:outputText value="#{personHome.instance.position}"/>
+				<h:outputText value="#{memberHome.instance.position}"/>
 
 				Expiry:
-				<h:outputText value="#{personHome.instance.expiryDate}"/>
+				<h:outputText value="#{memberHome.instance.expiryDate}"/>
 
 				Address:
-				<h:outputText value="#{personHome.instance.address}"/>
+				<h:outputText value="#{memberHome.instance.address}"/>
 
 				City:
-				<h:outputText value="#{personHome.instance.city}"/>
+				<h:outputText value="#{memberHome.instance.city}"/>
 
 				Province,Country,PostCode:
 				<ui:fragment>
-				<h:outputText value="#{personHome.instance.province}"/>#{' '}
-				<h:outputText value="#{personHome.instance.country}"/>#{' '}
-				<h:outputText value="#{personHome.instance.postCode}"/>
+				<h:outputText value="#{memberHome.instance.province}"/>#{' '}
+				<h:outputText value="#{memberHome.instance.country}"/>#{' '}
+				<h:outputText value="#{memberHome.instance.postCode}"/>
 				</ui:fragment>
 				
 			</p:panelGrid>
 
 	<h:form>
-	<p:commandButton value="Done" action="#{personHome.done}"/>
+	<p:commandButton value="Done" action="#{memberHome.done}"/>
 	</h:form>
 
 	</ui:define>

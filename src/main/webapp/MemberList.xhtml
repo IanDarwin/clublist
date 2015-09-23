@@ -11,55 +11,55 @@
 <ui:define name="body">
 
 	<p:panel>
-	<f:facet name="header">Here's looking at your Members  - #{personList.findAll().size()} of them.</f:facet>
+	<f:facet name="header">Here's looking at your Members  - #{memberList.findAll().size()} of them.</f:facet>
 
 	<!-- Print the table, or, an error -->
 	<h:outputText
 		value="Arrr, Billy! I can't find any people. Did we add any yet??"
-		rendered="#{empty personList.findAll()}"/>
+		rendered="#{empty memberList.findAll()}"/>
 
 	<!-- Display the main part of the whole page. -->
 	<p:dataTable border='1' 
-		rendered="#{!empty personList.findAll()}"
-		var="person" value="#{personList.findAll()}" 
+		rendered="#{!empty memberList.findAll()}"
+		var="member" value="#{memberList.findAll()}" 
 		paginator="true" rows="#{pfTableConstants.rows}"
 		paginatorTemplate="#{pfTableConstants.paginatorTemplate}"
 		rowsPerPageTemplate="#{pfTableConstants.rowsPerPageTemplate}"
 		>
 		<p:column width="5%">
 			<f:facet name="header">Id</f:facet>
-			<h:outputText value="#{person.id}"/>
+			<h:outputText value="#{member.id}"/>
 		</p:column>
 		<p:column>
 			<f:facet name="header">First Name</f:facet>
-			<h:outputText value="#{person.firstName}"/>
+			<h:outputText value="#{member.firstName}"/>
 		</p:column>
 		<p:column>
 			<f:facet name="header">Last Name</f:facet>
-			<h:outputText value="#{person.lastName}"/>
+			<h:outputText value="#{member.lastName}"/>
 		</p:column>
 		<p:column>
 			<f:facet name="header">Email</f:facet>
-			<h:outputText value="#{person.email}"/>
+			<h:outputText value="#{member.email}"/>
 		</p:column>
 		<p:column style="width: 20%">
 			<f:facet name="header">Operations</f:facet>
-			<h:outputLink value="PersonView.web">
+			<h:outputLink value="MemberView.web">
 				View
-				<f:param name="personId" value="#{person.id}"/>
+				<f:param name="memberId" value="#{member.id}"/>
 			</h:outputLink>
-			<h:outputLink value="PersonLabel.web">
+			<h:outputLink value="MemberLabel.web">
 				Badge
-				<f:param name="personId" value="#{person.id}"/>
+				<f:param name="memberId" value="#{member.id}"/>
 			</h:outputLink>
-			<h:outputLink value="PersonEdit.web">
+			<h:outputLink value="MemberEdit.web">
 				Edit
-				<f:param name="personId" value="#{person.id}"/>
+				<f:param name="memberId" value="#{member.id}"/>
 			</h:outputLink>
 		</p:column>
 	</p:dataTable>
 	<h:form>
-	<p:button outcome="PersonEdit.web" value="Add"/>
+	<p:button outcome="MemberEdit.web" value="Add"/>
 	</h:form>
 	</p:panel>
 </ui:define>
