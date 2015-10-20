@@ -41,7 +41,7 @@
 		<dependency>
 			<groupId>com.darwinsys</groupId>
 			<artifactId>darwinsys-ee</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.8</version>
 		</dependency>
 	
 		<!-- Java EE API -->
@@ -121,6 +121,7 @@
 			<version>${hibernate.validator.version}</version>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
