@@ -1,10 +1,19 @@
 package data;
 
-import java.util.*;
-import javax.persistence.*;
-import org.junit.*;
-import model.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import model.Member;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 public class PersistenceTest {
 

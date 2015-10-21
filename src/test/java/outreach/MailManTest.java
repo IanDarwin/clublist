@@ -1,13 +1,10 @@
 package outreach;
 
-import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
-
-import javax.mail.MessagingException;
 
 import model.Member;
 
