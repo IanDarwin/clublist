@@ -21,6 +21,11 @@
 		<url-pattern>*.web</url-pattern>
 	</servlet-mapping>
 
+	<!-- Security roles used by this web application -->
+	<security-role>
+		<role-name>club_exec</role-name>
+	</security-role>
+
 	<login-config>
 		<auth-method>FORM</auth-method>
 		<realm-name>Club Membership Area</realm-name>
