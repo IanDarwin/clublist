@@ -33,6 +33,8 @@ public class MemberHome implements Serializable {
 
 	private static final long serialVersionUID = -2284578724132631798L;
 
+	@PersistenceContext(type=PersistenceContextType.EXTENDED) EntityManager em;
+
 	private static final String LIST_PAGE = "MemberList";
 	private static final String FORCE_REDIRECT = "?faces-redirect=true";
 
@@ -40,20 +42,31 @@ public class MemberHome implements Serializable {
 
 	// Must be Long (not long) so we can check for null
 	private Long id;
-	private Member instance = new Member();
+	private Member instance = newInstance();
 
-	@PersistenceContext(type=PersistenceContextType.EXTENDED) EntityManager em;
+	public Member newInstance() {
+		System.out.println("MemberHome.newInstance()");
+		return new Member();
+	}
 
 	public MemberHome() {
 		System.out.println("MemberHome.MemberHome()");
 	}
 
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		System.out.println("MemberHome.setId(" + id + ")");
+		this.id = id;
+	}
+
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void wire() {
+		System.out.println("Wire(): " + id);
 		if (conv.isTransient()) {
 			conv.begin();
 		}
-		System.out.println("Wire(): " + id);
 		if (id == null) {
 			instance = new Member();
 			return;
@@ -69,13 +82,6 @@ public class MemberHome implements Serializable {
 		wire();
 	}
 
-	@TransactionAttribute(TransactionAttributeType.REQUIRED)
-	public String update() {
-		System.out.println("MemberHome.update()");
-		em.merge(instance);
-		return LIST_PAGE + FORCE_REDIRECT;
-	}
-	
 	/** The C of CRUD - create a new T in the database */
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public String save() {
@@ -84,18 +90,31 @@ public class MemberHome implements Serializable {
 		conv.end();
 		return LIST_PAGE + FORCE_REDIRECT;
 	}
-
-	public void newInstance() {
-		System.out.println("MemberHome.newInstance()");
-		instance = new Member();
+	
+	/** The R of CRUD - Download a T by primary key
+	 * @param id The primary key of the entity to find
+	 * @return The found entity
+	 */
+	public Member find(long id) {		
+		return em.find(Member.class, id);
 	}
 
-	public Long getId() {
-		return id;
+	/** The U of CRUD - update an Entity
+	 * @param entity The entity to update
+	 */
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public String update() {
+		System.out.println("MemberHome.update()");
+		em.merge(instance);
+		return LIST_PAGE + FORCE_REDIRECT;
 	}
-	public void setId(Long id) {
-		System.out.println("MemberHome.setId(" + id + ")");
-		this.id = id;
+
+	/** The D of CRUD - delete an Entity. Use with care! */
+	public String remove() {
+		System.out.println("MemberHome.remove()");
+		em.remove(instance);
+		conv.end();
+		return LIST_PAGE + FORCE_REDIRECT;
 	}
 	
 	public Member getInstance() {
@@ -122,16 +141,9 @@ public class MemberHome implements Serializable {
 		return LIST_PAGE + FORCE_REDIRECT;
 	}
 
-	/** The D of CRUD - delete an Entity. Use with care! */
-	public String remove() {
-		System.out.println("MemberHome.remove()");
-		em.remove(instance);
-		conv.end();
-		return LIST_PAGE + FORCE_REDIRECT;
-	}
-
 	@PreDestroy
 	public void bfn() {
+		conv.end();
 		System.out.println("MemberHome.bfn()");
 	}
 
