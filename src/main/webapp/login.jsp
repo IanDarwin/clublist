@@ -13,7 +13,7 @@
 
 		<div class="dialog">
 				User name:<br/>
-				<input type="text" name="j_username"/>
+				<input type="text" name="j_username" placeholder="login name"/>
 				<br/>
 				Password:<br/>
 				<input type="password" name="j_password"/>
