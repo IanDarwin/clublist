@@ -27,8 +27,9 @@
         <h:outputLink value="index.web" rendered="#{not identity.loggedIn}">
 			Login
 		</h:outputLink>
-		-->
         <h:outputLink value="index.web" action="#{identity.logout}" 
 			rendered="#{identity.loggedIn}">Logout</h:outputLink>
+		-->
+		<h:outputLink value="logout.jsp">Logout</h:outputLink>
     </p:toolbarGroup>
 </p:toolbar>
