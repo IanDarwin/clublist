@@ -1,8 +1,16 @@
 = clublist - Club Membership List
 
-Track members for a small non-profit club.
+This is an example of the classic "list-detail" application written
+for the web using JSF, EJB3, JPA and DeltaSpike Data.
 
-This shows off some basic functionality of JPA and DeltaSpike Data in a JSF environment.
+This implementation of list-detail is used to
+track members for a small non-profit club,
+but the basic idea applies anywhere.
+
+Development of this project was inspired by my involvement with the
+http://www.uppercreditfieldnaturalists.org/[
+Upper Credit Field Naturalists], where a slightly-enhanced version of this
+project is actually used for membership management.
 
 == Deployment
 
