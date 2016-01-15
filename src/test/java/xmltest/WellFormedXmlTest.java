@@ -25,6 +25,7 @@ public class WellFormedXmlTest {
 
 	/** Only parse files that end like so */
 	final static String FACELETS_EXT = ".xhtml";
+	final static String XML_EXT = ".xml";
 
 	static boolean verbose = false;
 
@@ -67,8 +68,10 @@ public class WellFormedXmlTest {
 		if (!f.exists()) {
 			throw new IllegalArgumentException(f + " does not exist");
 		}
+		// Add XML or XHTML files to the lsit
 		if (f.isFile()) {
-			if (f.getName().endsWith(FACELETS_EXT)) {
+			if (f.getName().endsWith(FACELETS_EXT) ||
+				f.getName().endsWith(XML_EXT)) {
 				allFiles.add(f);
 			}
 		} else if (f.isDirectory()) {
@@ -77,11 +80,11 @@ public class WellFormedXmlTest {
 			for (int i=0; i<objects.length; i++)
 				doDir(objects[i], allFiles);
 		} else
-			System.err.println("Unknown filesystem object: " + f);
+			System.err.println("Ignoring unknown filesystem object: " + f);
 	}
 
 	/**
-	 * Parse the one file named in "XmlFile"; will be called many
+	 * Parse the one file named in "XmlFile"; will be called multiple
 	 * times by the Parameterized runner, once per file
 	 */
 	@Test
@@ -89,8 +92,10 @@ public class WellFormedXmlTest {
 			if (verbose) {
 				System.err.println( "Parsing " + xmlFile.getAbsolutePath() + "...");
 			}
-			
+
+			// This will throw an exception if the file doesn't parse
 			parser.parse(xmlFile);
+
 			// If we get here, it parsed OK
 	}
 }
