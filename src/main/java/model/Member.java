@@ -1,8 +1,14 @@
 package model;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.ElementCollection;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -31,6 +37,7 @@ public class Member {
 	/** If they have an executive position */
 	String position;
 	Date expiryDate;
+	protected List<String> roles = new ArrayList<>();
 	
 	/** 
 	 * "A very public Person"
@@ -168,6 +175,16 @@ public class Member {
 		this.expiryDate = expiryDate;
 	}
 	
+	// For app-managed security
+
+	@ElementCollection
+	public List<String> getRoles() {
+		return roles;
+	}
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
+
 	/**
 	 * Canadian Post Codes can be entered in either case
 	 * and with or without the middle space; this
