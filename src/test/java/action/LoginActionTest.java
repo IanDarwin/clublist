@@ -81,7 +81,6 @@ public class LoginActionTest {
             .addAsResource(new File("src/main/resources" + "/META-INF/persistence.xml"), "META-INF/persistence.xml")
             // Mistakes such as missing leading "/" may cause silent failures
             .addAsResource(new File("src/main/resources" + "/config-sample.properties"), "config.properties")
-            .addAsWebInfResource(new File("src/test/web.xml"), "WEB-INF/web.xml")
             .addAsWebInfResource(
                 new StringAsset("<faces-config version=\"2.1\"/>"),
                 "faces-config.xml")
