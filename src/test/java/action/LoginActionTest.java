@@ -1,13 +1,10 @@
 package action;
 
 import static org.jboss.arquillian.graphene.Graphene.guardHttp;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.net.URL;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
@@ -22,7 +19,6 @@ import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.importer.ExplodedImporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
@@ -63,28 +59,6 @@ public class LoginActionTest {
 	@ArquillianResource
 	private URL deploymentUrl;
 	
-//	/** We will test the Login Action but override its JPA-using verifyUser method */
-//	@ManagedBean(name="identity") @SessionScoped
-//	public static class MockLoginAction extends LoginAction {
-//		private static final long serialVersionUID = 1L;
-//		public MockLoginAction() {
-//			// empty
-//		}
-//		@Override
-//		Member verifyUser(String username, String password) {
-//			System.out.println("LoginActionTest.MockLoginAction.verifyUser()");
-//			if (TEST_USERNAME.equals(username) &&
-//				TEST_PASSWORD.equals(password)) {
-//				Member m = new Member(TEST_FIRSTNAME, "User", "nobody@mrmyxyzptylk456789.com");
-//				m.setUserName(username);
-//				m.setPassword(password);
-//				return m;
-//			} else {
-//				throw new IllegalArgumentException("Invalid username/password");
-//			}
-//		}
-//	}
-	
 	@Deployment()
     public static WebArchive createDeployment() {
 		String DSD = "org.apache.deltaspike.modules:deltaspike-data-module-api:1.3.0";
@@ -100,7 +74,6 @@ public class LoginActionTest {
             		// NOT MemberHome.class, - exclude for now
             		MemberList.class,
             		MemberValidator.class
-//            		MockLoginAction.class
             		)
             .addAsLibraries(files)
             .merge(ShrinkWrap.create(GenericArchive.class).as(ExplodedImporter.class)
