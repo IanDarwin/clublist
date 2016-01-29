@@ -33,14 +33,14 @@ import mock.MockMemberListProducer;
 @RunWith(Arquillian.class)
 public class LoginActionTest {
 	
-	public static final String TEST_PASSWORD = "xecret";
 	public static final String TEST_USERNAME = "test";
-	public static final String TEST_FIRSTNAME = "Top";
+	public static final String TEST_PASSWORD = "xecret";
+	public static final String TEST_FIRSTNAME = "Tapfoot";
 
 	@Drone
 	private WebDriver driver;
 
-	// These injected WebElements are proxied so the elements don't have to exist until test accesses them
+	// These injected WebElements are proxied, so elements don't have to exist until test accesses them
 	@FindBy(id="loginForm:userName")
 	private WebElement userNameTF;
 
@@ -95,12 +95,11 @@ public class LoginActionTest {
 		final String target = deploymentUrl.toExternalForm() + "login.jsf";
 		System.out.println("LoginActionTest.testLoginSuccessfully(): URL = " + target);
 		driver.get(target);
-		System.out.println(driver.getPageSource());
+		//System.out.println(driver.getPageSource());
 		userNameTF.sendKeys(TEST_USERNAME);
 		passwordTF.sendKeys(TEST_PASSWORD);
 		guardHttp(loginButton).click();
-		System.out.println(driver.getPageSource());
-		// assertEquals(TEST_FIRSTNAME, loggedInName.getText().trim());
+		//System.out.println(driver.getPageSource());
 		assertTrue(driver.getPageSource().contains("Welcome " + TEST_FIRSTNAME));
 	}
 
