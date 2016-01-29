@@ -27,8 +27,8 @@ import org.openqa.selenium.support.FindBy;
 
 import data.MemberList;
 import data.MemberValidator;
-import mock.MockDataSourceProducer;
 import model.Member;
+import mock.MockMemberListProducer;
 
 @RunWith(Arquillian.class)
 public class LoginActionTest {
@@ -36,9 +36,6 @@ public class LoginActionTest {
 	public static final String TEST_PASSWORD = "xecret";
 	public static final String TEST_USERNAME = "test";
 	public static final String TEST_FIRSTNAME = "Top";
-
-	private static final String WEBAPP_SRC = /*"view";*/"src/main/webapp";
-	private static final String RESOURCES_SRC = "src/main/resources";
 
 	@Drone
 	private WebDriver driver;
@@ -68,22 +65,22 @@ public class LoginActionTest {
 		final WebArchive archive = ShrinkWrap.create(WebArchive.class, "clubtesting.war")
 			.addPackage(LoginAction.class.getPackage())				// action
             .addPackage(Member.class.getPackage())					// model
-            .addPackage(MockDataSourceProducer.class.getPackage())	// mock
+            .addPackage(MockMemberListProducer.class.getPackage())	// mock
             .addPackage(WebDriver.class.getPackage())
             .addClasses(
-            		// NOT MemberHome.class, - exclude for now
+            		// MemberHome.class, // exclude
             		MemberList.class,
             		MemberValidator.class
             		)
             .addAsLibraries(files)
             .merge(ShrinkWrap.create(GenericArchive.class).as(ExplodedImporter.class)
-            		.importDirectory(WEBAPP_SRC).as(GenericArchive.class),
+            		.importDirectory("src/main/webapp").as(GenericArchive.class),
                     	"/", Filters.include(".*\\.xhtml$"))
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
             // Yes, this is src/main/resources, not src/test/resources
-            .addAsResource(new File(RESOURCES_SRC + "/META-INF/persistence.xml"), "META-INF/persistence.xml")
+            .addAsResource(new File("src/main/resources" + "/META-INF/persistence.xml"), "META-INF/persistence.xml")
             // Mistakes such as missing leading "/" may cause silent failures
-            .addAsResource(new File(RESOURCES_SRC + "/config-sample.properties"), "config.properties")
+            .addAsResource(new File("src/main/resources" + "/config-sample.properties"), "config.properties")
             .addAsWebInfResource(new File("src/test/web.xml"), "WEB-INF/web.xml")
             .addAsWebInfResource(
                 new StringAsset("<faces-config version=\"2.1\"/>"),
