@@ -2,9 +2,9 @@ package data;
 
 import java.io.Serializable;
 
-import model.Country;
-
 import org.omg.CORBA.StringHolder;
+
+import model.Country;
 
 /**
  * Raw validators, not tied to JSF or anything.

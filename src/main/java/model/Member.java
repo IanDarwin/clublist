@@ -1,14 +1,11 @@
 package model;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import javax.persistence.Entity;
 import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -27,16 +24,17 @@ import javax.persistence.Transient;
 @Entity
 public class Member {
 	
-	long id;
-	String firstName, lastName;
-	String homePhone, cellPhone;
-	String email;
-	String address, address2;
-	String city, province, postCode;
-	Country country = Country.CA;
+	private long id;
+	protected String userName, password;
+	protected String firstName, lastName;
+	protected String homePhone, cellPhone;
+	protected String email;
+	protected String address, address2;
+	protected String city, province, postCode;
+	protected Country country = Country.CA;
 	/** If they have an executive position */
-	String position;
-	Date expiryDate;
+	protected String position;
+	protected Date expiryDate;
 	protected List<String> roles = new ArrayList<>();
 	
 	/** 
@@ -67,6 +65,25 @@ public class Member {
 		this.id = id;
 	}
 
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	/** Accessor for the password. May be hashed or not; the semantics
+	 * are provided by the external control implementation, not coded here.
+	 * @return The password string
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public String getFirstName() {
 		return firstName;
 	}

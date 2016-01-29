@@ -6,13 +6,12 @@ import static org.mockito.Mockito.when;
 import java.util.Arrays;
 import java.util.List;
 
-import model.Member;
-
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import data.MemberList;
+import model.Member;
 
 public class MailManTest {
 

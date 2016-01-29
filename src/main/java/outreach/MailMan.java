@@ -17,8 +17,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import model.Member;
 import data.MemberList;
+import model.Member;
 
 @ManagedBean(name="mailMan") @RequestScoped
 public class MailMan implements Serializable {

@@ -7,11 +7,11 @@ import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Default;
 import javax.inject.Named;
 
-import model.Member;
-
 import org.apache.deltaspike.data.api.EntityRepository;
 import org.apache.deltaspike.data.api.Query;
 import org.apache.deltaspike.data.api.Repository;
+
+import model.Member;
 
 /**
  * This is a basic DAO-like interface for use by JSF or EJB.

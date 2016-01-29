@@ -10,8 +10,9 @@ import javax.inject.Inject;
 import javax.persistence.NoResultException;
 
 import com.darwinsys.security.DigestUtils;
-import model.Member;
+
 import data.MemberList;
+import model.Member;
 
 /**
  * Simple DIY login.
