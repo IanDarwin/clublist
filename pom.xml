@@ -215,7 +215,7 @@
 			<version>8.1.0.CR1</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- To save a huge amount of pain in building the dependencies -->
+		<!-- To save some pain in building the dependencies -->
 		<dependency>
 			<groupId>org.jboss.shrinkwrap.resolver</groupId>
 			<artifactId>shrinkwrap-resolver-api-maven</artifactId>
