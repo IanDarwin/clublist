@@ -18,8 +18,8 @@ project is actually used for membership management.
 in this file from 'Sample Club' to your organization's name (keep it short).
 . Set up a JTA datasource in your app server
 . Change persistence.xml from the in-memory H2 to the JTA datasource
-. Setup the deployment as needed (e.g., edit jboss-deployment.xml)
-. Container-managed security is already configured. Just create a user in the role of club_exec in your app server.
+. Setup the deployment as needed (e.g., edit WEB-INF/jboss-web.xml)
+. For course 936: Container-managed security is already configured. Just create a user in the role of club_exec in your app server.
 . Deploy (e.g., mvn wildfly:deploy if you use JBoss WildFly).
 . Enjoy!
 
