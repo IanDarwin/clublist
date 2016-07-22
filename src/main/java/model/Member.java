@@ -1,7 +1,10 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -21,16 +24,18 @@ import javax.persistence.Transient;
 @Entity
 public class Member {
 	
-	long id;
-	String firstName, lastName;
-	String homePhone, cellPhone;
-	String email;
-	String address, address2;
-	String city, province, postCode;
-	Country country = Country.CA;
+	private long id;
+	protected String userName, password;
+	protected String firstName, lastName;
+	protected String homePhone, cellPhone;
+	protected String email;
+	protected String address, address2;
+	protected String city, province, postCode;
+	protected Country country = Country.CA;
 	/** If they have an executive position */
-	String position;
-	Date expiryDate;
+	protected String position;
+	protected Date expiryDate;
+	protected List<String> roles = new ArrayList<>();
 	
 	/** 
 	 * "A very public Person"
@@ -60,6 +65,25 @@ public class Member {
 		this.id = id;
 	}
 
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	/** Accessor for the password. May be hashed or not; the semantics
+	 * are provided by the external control implementation, not coded here.
+	 * @return The password string
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
@@ -168,6 +192,16 @@ public class Member {
 		this.expiryDate = expiryDate;
 	}
 	
+	// For app-managed security
+
+	@ElementCollection
+	public List<String> getRoles() {
+		return roles;
+	}
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
+
 	/**
 	 * Canadian Post Codes can be entered in either case
 	 * and with or without the middle space; this

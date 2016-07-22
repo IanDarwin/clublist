@@ -1,0 +1,8 @@
+<!-- You can add various Arquillian configuration goo here. For now, just the browser choice. -->
+<arquillian>
+
+    <extension qualifier="webdriver">
+        <property name="browser">htmlUnit</property>
+    </extension>
+
+</arquillian>

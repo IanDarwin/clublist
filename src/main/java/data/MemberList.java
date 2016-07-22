@@ -7,11 +7,11 @@ import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Default;
 import javax.inject.Named;
 
-import model.Member;
-
 import org.apache.deltaspike.data.api.EntityRepository;
 import org.apache.deltaspike.data.api.Query;
 import org.apache.deltaspike.data.api.Repository;
+
+import model.Member;
 
 /**
  * This is a basic DAO-like interface for use by JSF or EJB.
@@ -24,7 +24,9 @@ import org.apache.deltaspike.data.api.Repository;
 @Repository 
 public interface MemberList extends Serializable, EntityRepository<Member, Long>  {
 
-	@Query(value="select p from Member p order by p.lastName asc")
+	@Query(value="select m from Member m order by m.lastName asc")
 	List<Member> findAll();
 
+	/** Basic for login */
+	public Member findByUserNameAndPassword(String username, String passwordHash);
 }

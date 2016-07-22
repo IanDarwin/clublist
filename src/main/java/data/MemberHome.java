@@ -18,10 +18,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 
+import org.omg.CORBA.StringHolder;
+
 import model.Country;
 import model.Member;
-
-import org.omg.CORBA.StringHolder;
 
 /**
  * Implements Gateway, an Adam Bien pattern whose purpose is to expose

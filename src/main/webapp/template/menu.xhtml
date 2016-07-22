@@ -1,4 +1,4 @@
-<p:toolbar
+<p:toolbar id='menu'
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
@@ -21,15 +21,11 @@
 			<h:graphicImage value="/images/invertocat.png" width="24" height="24" />
 		</h:outputLink>
 		#{'  '}
-        <h:outputText value="Welcome #{request.remoteUser}"/>
+        <h:outputText id='loggedInName' value="Welcome #{identity.loggedInUser.firstName}" rendered="#{identity.loggedIn}"/>
 		<!--
-        <h:outputText value="signed in as: #{identity.username}" rendered="#{identity.loggedIn}"/>
         <h:outputLink value="index.web" rendered="#{not identity.loggedIn}">
 			Login
 		</h:outputLink>
-        <h:outputLink value="index.web" action="#{identity.logout}" 
-			rendered="#{identity.loggedIn}">Logout</h:outputLink>
 		-->
-		<h:outputLink value="logout.jsp">Logout</h:outputLink>
     </p:toolbarGroup>
 </p:toolbar>
