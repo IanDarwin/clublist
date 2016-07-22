@@ -12,6 +12,12 @@ http://www.uppercreditfieldnaturalists.org/[
 Upper Credit Field Naturalists], where a slightly-enhanced version of this
 project is actually used for membership management.
 
+== Updates!
+
+To receive updates when functionality is added, please subscribe to my private mailint list for this project, at
+https://darwinsys.com/mailman/listinfo/clublist  We do not sell or rent your emails nor do we send spam.
+We may send the very-occasional announcement of Java-related publications.
+
 == Deployment
 
 . Copy config-sample.properties to config.properties, change the name in the orgName property
