@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
 		http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/persistence/persistence_2_1.xsd"
 	version="2.1">
-    
+
 	<persistence-unit name="clublist" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>model.Member</class>
@@ -21,10 +21,16 @@
 			<property name="javax.persistence.jdbc.user" value="sa" />
 			<property name="javax.persistence.jdbc.password" value="" />
 
+			<!-- Properties controlling database setup for tests -->
+			<property name="javax.persistence.schema-generation.database.action"
+				value="drop-and-create"/>
+			<property name="javax.persistence.schema-generation.load-script-source"
+				value="sql/load-test-data.sql" />
+
 			<!-- Properties for Hibernate provider -->
-			<property name="hibernate.hbm2ddl.auto" value="create-drop"/>
 			<property name="hibernate.show_sql" value="true"/>
 			<property name="hibernate.format_sql" value="false"/>
+
 		</properties>
 	</persistence-unit>
 </persistence>
