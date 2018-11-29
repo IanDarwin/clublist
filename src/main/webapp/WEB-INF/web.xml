@@ -35,6 +35,7 @@
 		</form-login-config>
 	</login-config>
 
+<!--
 	<security-constraint>
 		<display-name>Club Membership Area</display-name>
 		<web-resource-collection>
@@ -44,11 +45,12 @@
 		<auth-constraint>
 			<role-name>club_exec</role-name>
 		</auth-constraint>
-		<!--
+		<!**
 		<user-data-constraint>
 			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
 		</user-data-constraint>
-		-->
+		**
 	</security-constraint>
+-->
 
 </web-app>
