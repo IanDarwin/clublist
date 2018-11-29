@@ -2,7 +2,7 @@ package data;
 
 import java.io.Serializable;
 
-import org.omg.CORBA.StringHolder;
+import com.darwinsys.lang.StringHolder;
 
 import model.Country;
 

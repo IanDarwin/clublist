@@ -18,7 +18,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
 
-import org.omg.CORBA.StringHolder;
+import com.darwinsys.lang.StringHolder;
 
 import model.Country;
 import model.Member;
