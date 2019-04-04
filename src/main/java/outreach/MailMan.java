@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -20,7 +20,7 @@ import javax.mail.internet.MimeMessage;
 import data.MemberList;
 import model.Member;
 
-@ManagedBean(name="mailMan") @RequestScoped
+@Named("mailMan") @RequestScoped
 public class MailMan implements Serializable {
 
 	private static final String PROPNAME_MAIL_SMTP_HOST = "mail.smtp.host";

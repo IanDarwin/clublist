@@ -2,11 +2,11 @@ package action;
 
 import java.io.Serializable;
 
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.NoResultException;
 
 import com.darwinsys.security.DigestUtils;
@@ -17,7 +17,7 @@ import model.Member;
 /**
  * Simple DIY login.
  */
-@ManagedBean(name="identity") @SessionScoped
+@Named("identity") @SessionScoped
 public class LoginAction implements Serializable {
 
 	private static final long serialVersionUID = -1899830327382597511L;
