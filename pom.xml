@@ -4,6 +4,10 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
+	<!-- WARNING WARNING WARNING ... DO NOT run mvn versions:update-properties or use-latest-releases
+	 **  in this project - unless you are prepared to deal with changes in shrinkwrap that BREAK this project.
+	 -->
+
 	<groupId>com.darwinsys</groupId>
 	<artifactId>club</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
