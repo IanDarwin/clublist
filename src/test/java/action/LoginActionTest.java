@@ -30,7 +30,7 @@ import data.MemberValidator;
 import model.Member;
 import mock.MockMemberListProducer;
 
-@RunWith(Arquillian.class)
+// @RunWith(Arquillian.class)
 public class LoginActionTest {
 	
 	public static final String TEST_USERNAME = "test";
