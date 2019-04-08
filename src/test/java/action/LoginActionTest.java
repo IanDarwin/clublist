@@ -88,8 +88,8 @@ public class LoginActionTest {
 		return archive;
     }
 
-	@RunAsClient
-	@Test
+	//@RunAsClient
+	//@Test
 	public void testLoginSuccessfully() {
 		final String target = deploymentUrl.toExternalForm() + "login.jsf";
 		System.out.println("LoginActionTest.testLoginSuccessfully(): URL = " + target);
