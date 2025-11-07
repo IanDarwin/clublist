@@ -1,5 +1,9 @@
 = clublist - Club Membership List
 
+N.B. This repo is ib archive status - please refer to my newer
+repo https://github.com/IanDarwin/quarkus-jsf-panache-record/tree/main[quarkus-jsf-panache-recore]
+for a newer take on a simple list-detail site.
+
 This is an example of the classic "list-detail" application written
 for the web using JSF, EJB3, JPA and DeltaSpike Data.
 
